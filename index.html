@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+    <style>
+        *{
+            padding: 0;
+            box-sizing: border-box;
+            margin: 0;
+            scroll-behavior: smooth;
+            text-align: justify;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        ::-webkit-scrollbar{
+            width: 0;
+        }
+        :root{
+            --wte: #fff;
+            --wte5: rgba(255, 255, 255, 0.5);
+            --wte2: rgba(255, 255, 255, 0.2);
+            --wte05: rgba(255, 255, 255, 0.05);
+            --wte8: rgba(255, 255, 255, 0.8);
+            --blk: #000;
+            --navPadding: 10px;
+            --imgHeight: 50px;
+            --navHeight: calc(var(--navHeight + var(--imgHeight)));
+            --blk5: rgba(0, 0, 0, 0.5);
+        }
+        body{
+            background: var(--blk);
+            color: var(--wte);
+        }
+        nav{
+            width: 100%;
+            position: sticky;
+            background: var(--blk);
+            align-items: center;
+            display: flex;
+            top: 0;
+            left: 0;
+            padding: var(--navPadding) 20px;
+            z-index: 99;
+            justify-content: space-between;
+        }
+        nav .logo{
+            height: var(--imgHeight);
+        }
+        nav .menuItems{
+            display: flex;
+            gap: 15px;
+            list-style: none;
+
+        }
+        section{
+            width: 100%;
+            position: relative;
+
+        }
+        .heroSection{
+            height: calc(100vh - 70px);
+            background: var(--wte05);
+            display: flex;
+            padding: 25px;
+            align-items: center;
+        }
+        .heroSection .content{
+            width: 50%;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+        .heroSection .content h1{
+            font-size: 3.5em;
+        }
+        .heroSection .heroImg{
+            width: 50%;
+        }
+        .heroSection .content button{
+            width: max-content;
+            font-size: 1.2em;
+        }
+        button{
+            background: var(--wte);
+            padding: 10px 25px;
+            text-align: center;
+            color: var(--blk);
+            border: none;
+
+        }
+        .topItems{
+            display: flex;
+            padding: 40px;
+            align-items: center;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 40px;
+        }
+        .topItems .topCard{
+            display: flex;
+            background: var(--wte05);
+            padding: 20px;
+            width: 500px;
+            align-items: center;
+            justify-content: space-between;
+            min-height: 300px;
+        }
+        .topItems .topCard .content h2{
+            font-size: 2em;
+        }
+        .topItems .topCard img{
+            width: 40%;
+        }
+        .moreItems{
+            padding: 40px;
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        .moreItems h1{
+            text-align: center;
+        }
+    
+        .moreItems .item-card{
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            padding: 15px;
+            background: var(--wte);
+            position: relative;
+            border: 2px solid var(--blk);
+            align-items: center;
+        }
+        .moreItems .item-card img{
+            filter: invert(0) !important;
+            width: 90%  !important;
+        }
+        .moreItems .item-card *{
+            width: 100%;
+            filter: invert(1);
+        }
+        .moreItems .item-card button{
+            height: 35px;
+        }
+        @media (max-width: 880px) {
+            .heroSection{
+                flex-direction: column-reverse;
+                justify-content: center;
+                height: auto;
+            }
+            .heroSection *{
+                width: 100% !important;
+            }
+             button{
+                text-align: center;
+            }
+            nav .menuItems{
+                position: fixed;
+                background: var(--blk);
+                height: calc(100vh - var(--imgHeight) - (var(--navPadding) * 2));
+                width: 100%;
+                transition: 0.3s;
+                left: 100%;
+                top: calc(var(--imgHeight) + (var(--navPadding) * 2));
+                flex-direction: column;
+                gap: 0;
+            }
+            nav .menuItems li{
+                width: 100%;
+                border-bottom: 2px solid var(--wte);
+                height: 45px;
+                padding-left: 10px;
+                align-content: center;
+            }
+            nav .menuItems.active{
+                left: 0;
+            }
+            
+        }
+
+
+    </style>
+    <link rel="stylesheet" href="./swiper.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Deepora Mart</title>
+</head>
+<body>
+    <nav>
+        <img src="./assets/img/logo.png" alt="" class="logo">
+        <ul class="menuItems">
+            <li>Home</li>
+            <li>Shop</li>
+            <li>Products</li>
+            <li>Sale</li>
+            <li>Contact Us</li>
+        </ul>
+        <span>0</span>
+    </nav>
+    <section class="heroSection">
+        <div class="content">
+        <h1>Pay Now, Buy later, No returns Allowed</h1>
+        <button>Pay Now</button>
+        </div>
+        <img src="./assets/img/pngimg.com - watches_PNG101457.png" alt="" class="heroImg">
+    </section>
+    <section class="topItems">
+        <div class="topCard">
+            <div class="content">
+                <h2>Worst Deal</h2>
+                <p>This is a deal for which you can pay.</p>
+            </div>
+            <img src="./assets/img/pngimg.com - watches_PNG101457.png" alt="">
+        </div>
+        <div class="topCard">
+            <div class="content">
+                <h2>Worst Deal</h2>
+                <p>This is a deal for which you can pay.</p>
+            </div>
+            <img src="./assets/img/pngimg.com - watches_PNG101457.png" alt="">
+        </div>
+        <div class="topCard">
+            <div class="content">
+                <h2>Worst Deal</h2>
+                <p>This is a deal for which you can pay.</p>
+            </div>
+            <img src="./assets/img/pngimg.com - watches_PNG101457.png" alt="">
+        </div>
+        <div class="topCard">
+            <div class="content">
+                <h2>Worst Deal</h2>
+                <p>This is a deal for which you can pay.</p>
+            </div>
+            <img src="./assets/img/pngimg.com - watches_PNG101457.png" alt="">
+        </div>
+    </section>
+    <section class="moreItems">
+        <h1>Featured Collection</h1>
+         <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide item-card">
+        <img src="./assets/img/pngimg.com - watches_PNG101457.png" alt="">
+        <h3>A bad watch</h3>
+        <button>Pay Now</button>
+      </div>
+      <div class="swiper-slide item-card">
+        <img src="./assets/img/pngimg.com - watches_PNG101457.png" alt="">
+        <h3>A bad watch</h3>
+        <button>Pay Now</button>
+      </div>
+      <div class="swiper-slide item-card">
+        <img src="./assets/img/pngimg.com - watches_PNG101457.png" alt="">
+        <h3>A bad watch</h3>
+        <button>Pay Now</button>
+      </div>
+      <div class="swiper-slide item-card">
+        <img src="./assets/img/pngimg.com - watches_PNG101457.png" alt="">
+        <h3>A bad watch</h3>
+        <button>Pay Now</button>
+      </div>
+    </div>
+  </div>
+    </section>
+     <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+
+  <!-- Initialize Swiper -->
+  <script>
+    var swiper = new Swiper(".mySwiper", {
+      effect: "cards",
+      grabCursor: true,
+    });
+  </script>
+</body>
+</html>

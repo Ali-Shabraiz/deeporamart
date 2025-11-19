@@ -19,6 +19,7 @@
             --wte5: rgba(255, 255, 255, 0.5);
             --wte2: rgba(255, 255, 255, 0.2);
             --wte05: rgba(255, 255, 255, 0.05);
+            --blk05: rgba(0, 0, 0, 0.05);
             --wte8: rgba(255, 255, 255, 0.8);
             --blk: #000;
             --navPadding: 10px;
@@ -29,6 +30,16 @@
         body{
             background: var(--blk);
             color: var(--wte);
+        }
+        body.lightTheme{
+            --blk: #fff;
+            --wte05: rgba(0, 0, 0, 0.05);
+            --wte: #000;
+            --blk05: rgba(255, 255, 255, 0.05);
+
+        }
+        body.lightTheme .logo{
+            filter: invert(1);
         }
         nav{
             width: 100%;
@@ -50,6 +61,17 @@
             gap: 15px;
             list-style: none;
 
+        }
+        nav .navIcons{
+            display: flex;
+            gap: 15px;
+        }
+        nav .navIcons span{
+            width: 35px;
+            align-content: center;
+            text-align: center;
+            height: 35px;
+            background: var(--wte05);
         }
         section{
             width: 100%;
@@ -113,8 +135,12 @@
         .moreItems{
             padding: 40px;
             display: flex;
-            flex-direction: column;
+            /* flex-direction: column; */
             gap: 30px;
+            flex-wrap: wrap;
+        }
+        .moreItems h1{
+            width: 100%;
         }
         .moreItems h1{
             text-align: center;
@@ -136,10 +162,14 @@
         }
         .moreItems .item-card *{
             width: 100%;
-            filter: invert(1);
+            /* filter: invert(1); */
+            color: var(--blk);
         }
+    
         .moreItems .item-card button{
             height: 35px;
+            color: var(--wte);
+            background: var(--blk);
         }
         @media (max-width: 880px) {
             .heroSection{
@@ -147,6 +177,7 @@
                 justify-content: center;
                 height: auto;
             }
+           
             .heroSection *{
                 width: 100% !important;
             }
@@ -174,13 +205,23 @@
             nav .menuItems.active{
                 left: 0;
             }
-            
+            .topItems{
+                gap: 10px;
+            }
+        .topItems .topCard{
+            min-height: max-content;
+            width: 100%;
         }
 
+        
+            
+        }
+        
 
     </style>
     <link rel="stylesheet" href="./swiper.css">
     <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deepora Mart</title>
     <link rel="shortcut icon" href="./assets/img/logo.png" type="image/x-icon">
@@ -195,7 +236,10 @@
             <li>Sale</li>
             <li>Contact Us</li>
         </ul>
-        <span>0</span>
+        <div class="navIcons">
+            <span class="fa fa-shopping-cart"></span>
+            <span class="fa fa-moon" onclick="document.body.classList.toggle('lightTheme')"></span>
+        </div>
     </nav>
     <section class="heroSection">
         <div class="content">
@@ -260,6 +304,59 @@
       </div>
     </div>
   </div>
+
+
+
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide item-card">
+        <img src="./assets/img/pngimg.com - watches_PNG101457.png" alt="">
+        <h3>A bad watch</h3>
+        <button>Pay Now</button>
+      </div>
+      <div class="swiper-slide item-card">
+        <img src="./assets/img/pngimg.com - watches_PNG101457.png" alt="">
+        <h3>A bad watch</h3>
+        <button>Pay Now</button>
+      </div>
+      <div class="swiper-slide item-card">
+        <img src="./assets/img/pngimg.com - watches_PNG101457.png" alt="">
+        <h3>A bad watch</h3>
+        <button>Pay Now</button>
+      </div>
+      <div class="swiper-slide item-card">
+        <img src="./assets/img/pngimg.com - watches_PNG101457.png" alt="">
+        <h3>A bad watch</h3>
+        <button>Pay Now</button>
+      </div>
+    </div>
+  </div>
+
+    <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide item-card">
+        <img src="./assets/img/pngimg.com - watches_PNG101457.png" alt="">
+        <h3>A bad watch</h3>
+        <button>Pay Now</button>
+      </div>
+      <div class="swiper-slide item-card">
+        <img src="./assets/img/pngimg.com - watches_PNG101457.png" alt="">
+        <h3>A bad watch</h3>
+        <button>Pay Now</button>
+      </div>
+      <div class="swiper-slide item-card">
+        <img src="./assets/img/pngimg.com - watches_PNG101457.png" alt="">
+        <h3>A bad watch</h3>
+        <button>Pay Now</button>
+      </div>
+      <div class="swiper-slide item-card">
+        <img src="./assets/img/pngimg.com - watches_PNG101457.png" alt="">
+        <h3>A bad watch</h3>
+        <button>Pay Now</button>
+      </div>
+    </div>
+  </div>
+
     </section>
      <script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
 

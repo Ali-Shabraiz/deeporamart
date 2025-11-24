@@ -1,20 +1,23 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <style>
-        *{
+        * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
             font-family: Arial, Helvetica, sans-serif;
         }
-        body{
+
+        body {
             background-image: url("./assets/img/cover.jpeg");
             background-size: cover;
             background-position: left;
 
         }
-        .main{
+
+        .main {
             height: 100vh;
             /* align-items: center; */
             justify-content: center;
@@ -24,10 +27,12 @@
 
             padding: 30px 15px;
         }
-        .center{
+
+        .center {
             text-align: center;
         }
-        form{
+
+        form {
             display: flex;
             width: 600px;
             height: max-content;
@@ -38,12 +43,14 @@
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.342);
             border-radius: 20px;
         }
-        section.two{
+
+        section.two {
             display: flex;
             gap: 30px;
             width: 100%;
             /* background: red; */
         }
+
         .field {
             display: flex;
             width: 100%;
@@ -53,7 +60,9 @@
             /* background: red; */
             justify-content: center;
         }
-        .field input,.field textarea{
+
+        .field input,
+        .field textarea {
             padding: 10px;
             border-radius: 20px;
             border: none;
@@ -62,35 +71,40 @@
             transition: 0.2s;
             width: 100%;
         }
-        .field textarea{
+
+        .field textarea {
             resize: vertical;
             min-height: 150px;
         }
+
         .field input:focus,
-        .field textarea:focus
-        {
+        .field textarea:focus {
             background: #fff;
             border: none;
             outline: none;
             box-shadow: 0 0 5px #000;
         }
-        input[type="radio"]:focus{
+
+        input[type="radio"]:focus {
             box-shadow: none !important;
         }
-        input[type="radio"]{
+
+        input[type="radio"] {
             accent-color: orange;
         }
 
-        .flex{
+        .flex {
             display: flex;
             /* justify-content: space-evenly; */
             gap: 20px;
         }
-        label{
+
+        label {
             font-weight: 500;
             font-size: 0.8em;
         }
-        button{
+
+        button {
             padding: 10px;
             border: none;
             border-radius: 20px;
@@ -98,61 +112,63 @@
             background: orangered;
             box-shadow: 0 0 10px orangered;
         }
+
         @media (max-width: 650px) {
-            form{
+            form {
                 width: 100%;
-            }   
+            }
         }
+
         @media (max-width: 520px) {
-            section.two{
+            section.two {
                 flex-wrap: wrap;
                 gap: 10px;
             }
         }
-
     </style>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
+
 <body>
     <div class="main">
-        <form action="#">
+        <form id="form">
             <h2 class="center">Register an Account</h2>
             <h3>Basic Info</h3>
             <section class="two">
                 <div class="field">
                     <label for="nameBar">Full Name</label>
-                    <input type="text" id="nameBar" placeholder="Enter Full Name">
+                    <input type="text" name="name" id="nameBar" placeholder="Enter Full Name" required>
                 </div>
                 <div class="field">
                     <label for="emailBar">Email</label>
-                    <input type="email" id="emailBar" placeholder="example@gmail.com">
+                    <input type="email" id="emailBar" name="email" placeholder="example@gmail.com" required>
                 </div>
             </section>
             <section class="two">
                 <div class="field">
                     <label for="DOBBar">Date of Birth</label>
-                    <input type="date" name="" id="">
+                    <input type="date" name="DOB" id="DOBBar">
                 </div>
                 <div class="field">
-                    <label for="">Gander</label>
+                    <label>Gander</label>
                     <div class="flex">
-                        <input type="radio" name="gender" id="male">
+                        <input type="radio" name="gender" value="1" id="male">
                         <label for="male">Male</label>
-                        <input type="radio" name="gender" id="feMale">
+                        <input type="radio" name="gender" value="2" id="feMale">
                         <label for="feMale">Female</label>
                     </div>
                 </div>
             </section>
             <div class="field">
                 <label for="phoneBar">Phone</label>
-                <input type="tel" name="" id="phoneBar" placeholder="Enter Phone Number">
+                <input type="tel" name="phone" id="phoneBar" placeholder="Enter Phone Number" required>
             </div>
             <section class="two">
                 <div class="field">
                     <label for="locationBar">Address</label>
-                <textarea name="" placeholder="Enter your Address" id="locationBar"></textarea>
+                    <textarea name="address" placeholder="Enter your Address" id="locationBar" required></textarea>
                 </div>
             </section>
             <h2>Education</h2>
@@ -160,5 +176,25 @@
             <button>Register</button>
         </form>
     </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        var form = document.getElementById('form');
+        form.addEventListener('submit',e => {
+            e.preventDefault();
+            $.ajax({
+                url: "./PHP/submitnewuser.php",
+                method: "POST",
+                data: $("#form").serialize(),
+                success: (data) => {
+                    console.log(data);
+                }
+            });
+        });
+
+
+    </script>
 </body>
+
 </html>

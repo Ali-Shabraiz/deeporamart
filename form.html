@@ -60,6 +60,7 @@
             padding-left: 10px;
             background-color: #00000021;
             transition: 0.2s;
+            width: 100%;
         }
         .field textarea{
             resize: vertical;
@@ -73,9 +74,13 @@
             outline: none;
             box-shadow: 0 0 5px #000;
         }
+        input[type="radio"]:focus{
+            box-shadow: none !important;
+        }
         input[type="radio"]{
             accent-color: orange;
         }
+
         .flex{
             display: flex;
             /* justify-content: space-evenly; */

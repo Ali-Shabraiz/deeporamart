@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            background-image: url("./assets/img/orangebg.jpg");
+            background-size: cover;
+            background-position: left;
+
+        }
+        .main{
+            height: 100vh;
+            /* align-items: center; */
+            justify-content: center;
+            display: flex;
+            /* color:; */
+            /* background-attachment: fixed; */
+
+            padding: 30px;
+        }
+        .center{
+            text-align: center;
+        }
+        form{
+            display: flex;
+            width: 600px;
+            height: max-content;
+            padding: 20px;
+            background: #fff;
+            flex-direction: column;
+            gap: 10px;
+            box-shadow: 0 0 15px rgba(0, 0, 0, 0.342);
+            border-radius: 20px;
+        }
+        section.two{
+            display: flex;
+            gap: 30px;
+            width: 100%;
+            /* background: red; */
+        }
+        .field {
+            display: flex;
+            width: 100%;
+            flex-direction: column;
+            /* background: yellow; */
+            gap: 5px;
+            /* background: red; */
+            justify-content: center;
+        }
+        .field input,.field textarea{
+            padding: 10px;
+            border-radius: 20px;
+            border: none;
+            padding-left: 10px;
+            background-color: #00000021;
+            transition: 0.2s;
+        }
+        .field textarea{
+            resize: vertical;
+            min-height: 150px;
+        }
+        .field input:focus,
+        .field textarea:focus
+        {
+            background: #fff;
+            border: none;
+            outline: none;
+            box-shadow: 0 0 5px #000;
+        }
+        input[type="radio"]{
+            accent-color: orange;
+        }
+        .flex{
+            display: flex;
+            /* justify-content: space-evenly; */
+            gap: 20px;
+        }
+        label{
+            font-weight: 500;
+            font-size: 0.8em;
+        }
+        button{
+            padding: 10px;
+            border: none;
+            border-radius: 20px;
+            color: #fff;
+            background: orangered;
+            box-shadow: 0 0 10px orangered;
+        }
+        @media (max-width: 650px) {
+            form{
+                width: 100%;
+            }   
+        }
+        @media (max-width: 520px) {
+            section.two{
+                flex-wrap: wrap;
+                gap: 10px;
+            }
+        }
+
+    </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div class="main">
+        <form action="#">
+            <h2 class="center">Sign up</h2>
+            <section class="two">
+                <div class="field">
+                    <label for="nameBar">Full Name</label>
+                    <input type="text" id="nameBar" placeholder="Enter Full Name">
+                </div>
+                <div class="field">
+                    <label for="emailBar">Email</label>
+                    <input type="email" id="emailBar" placeholder="example@gmail.com">
+                </div>
+            </section>
+            <section class="two">
+                <div class="field">
+                    <label for="DOBBar">Date of Birth</label>
+                    <input type="date" name="" id="">
+                </div>
+                <div class="field">
+                    <label for="">Gander</label>
+                    <div class="flex">
+                        <input type="radio" name="gender" id="male">
+                        <label for="male">Male</label>
+                        <input type="radio" name="gender" id="feMale">
+                        <label for="feMale">Female</label>
+                    </div>
+                </div>
+            </section>
+            <div class="field">
+                <label for="phoneBar">Phone</label>
+                <input type="tel" name="" id="phoneBar" placeholder="Enter Phone Number">
+            </div>
+            <section class="two">
+                <div class="field">
+                    <label for="locationBar">Location</label>
+                <textarea name="" placeholder="Enter your location" id=""></textarea>
+                </div>
+            </section>
+            <button>Sign up</button>
+        </form>
+    </div>
+</body>
+</html>

@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+        body{
+            height: 100vh;
+            display: flex;
+            width: 100%;
+            /* align-items: center; */
+            /* justify-content: center; */
+            padding: 10px;
+
+        }
+        table{
+            height: max-content;
+            border-spacing: 0;
+            border-color: orangered;
+        }
+        table th,table td{
+            padding: 5px;
+            text-wrap: wrap;
+            /* text-wrap-mode: ; */
+        }
+        table td a{
+            background: black;
+            color: white;
+            text-align: center;
+            padding: 5px;
+            text-decoration: none;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<body>
+    <table border="1" id="userTable">
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>DOB</th>
+        <th>Gender</th>
+    </table>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+        
+<script>
+    function getGender(value){
+        switch(value){
+            case 1: return "Male";
+            break;
+            case 2: return "Female";
+            break;
+        }
+    
+    }
+    var userTable = document.getElementById('userTable');
+    fetch("./PHP/fetch_all_users.php").then(res => {
+        return res.json();
+    }).then(data => {
+        console.log(data);
+        data.forEach(user => {
+            var tr = document.createElement('tr');
+            var tr1 = document.createElement('tr');
+            tr.innerHTML = `<td>${user.Name}</td><td>${user.Email}</td><td><a href="tel:+${user.Phone}">Call</a></td><td>${user.DOB}</td><td>${getGender(Number(user.gender))}</td>`;
+            tr1.innerHTML = `<th>Address: </th><td colspan="4">${user.address}</td>`
+            userTable.appendChild(tr);
+            userTable.appendChild(tr1);
+        });
+    });
+</script>
+</body>
+</html>

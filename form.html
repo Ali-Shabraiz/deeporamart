@@ -11,6 +11,7 @@
         }
 
         body {
+            /* background: #000; */
             background-image: url("./assets/img/cover.jpeg");
             background-size: cover;
             background-position: left;
@@ -22,6 +23,7 @@
             /* align-items: center; */
             justify-content: center;
             display: flex;
+            color: #fff;
             /* color:; */
             /* background-attachment: fixed; */
 
@@ -35,13 +37,15 @@
         form {
             display: flex;
             width: 600px;
-            height: max-content;
+            height: auto;
             padding: 20px;
-            background: #fff;
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(3px);
             flex-direction: column;
             gap: 10px;
             box-shadow: 0 0 15px rgba(0, 0, 0, 0.342);
             border-radius: 20px;
+            border: 2px solid #fff;
         }
 
         section.two {

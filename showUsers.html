@@ -9,20 +9,79 @@
             padding: 0;
             margin: 0;
             box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
         }
         body{
             height: 100vh;
-            display: flex;
+            /* display: flex; */
             width: 100%;
             /* align-items: center; */
             /* justify-content: center; */
             padding: 10px;
-
         }
+        .container{
+            display: flex;
+            width: 100%;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+        .container .user{
+            box-shadow: 0 0 10px black;
+            padding: 10px;
+            width: 300px;
+            border-radius: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            min-height: 250px;
+            
+        }
+
+        .container .user .basicD{
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .container .user .basicD img{
+            width: 75px;
+        }
+        .container .user .basicD .content .name{
+            font-weight: 600;
+        }
+        .container .user .basicD .content .email{
+            font-size: 0.8em;
+            color: rgba(0, 0, 0, 0.5);
+        }
+        .container .user .phone{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: #000;
+            color: #fff;
+            padding: 5px;
+            text-decoration: none;
+            border-radius: 20px;
+        }
+        .container .user .dob{
+            padding: 5px;
+            border-radius: 15px;
+            background: rgba(0,0, 0, 0.7);
+            color: #fff;
+            width: max-content;
+        }
+        .container .user address{
+            /* align-self: center; */
+        }
+
         table{
             height: max-content;
             border-spacing: 0;
             border-color: orangered;
+            width: 100%;
+        }
+        table tr{
+            /* backgro */
         }
         table th,table td{
             padding: 5px;
@@ -40,25 +99,21 @@
     </style>
 </head>
 <body>
-    <table border="1" id="userTable">
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>DOB</th>
-        <th>Gender</th>
-    </table>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <div class="container" id="userTable">
         
-<script>
-    function getGender(value){
-        switch(value){
-            case 1: return "Male";
-            break;
-            case 2: return "Female";
-            break;
-        }
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    
+    <script>
+        function getGender(value){
+            switch(value){
+                case 1: return "./assets/img/man.png";
+                break;
+                case 2: return "./assets/img/woman.png";
+                break;
+            }
     
     }
     var userTable = document.getElementById('userTable');
@@ -67,12 +122,25 @@
     }).then(data => {
         console.log(data);
         data.forEach(user => {
-            var tr = document.createElement('tr');
-            var tr1 = document.createElement('tr');
-            tr.innerHTML = `<td>${user.Name}</td><td>${user.Email}</td><td><a href="tel:${user.Phone}">Call</a></td><td>${user.DOB}</td><td>${getGender(Number(user.gender))}</td>`;
-            tr1.innerHTML = `<th>Address: </th><td colspan="4">${user.address}</td>`
-            userTable.appendChild(tr);
-            userTable.appendChild(tr1);
+            var card = document.createElement('div');
+            // var tr1 = document.createElement('tr');
+            card.classList.add('user');
+            card.innerHTML = `
+            <div class="basicD">
+                <img src="${getGender(Number(user.gender))}" alt="">
+                <div class="content">
+                    <div class="name">${user.Name}</div>
+                    <a href="mail:${user.Email}" class="email">${user.Email}</a>
+                </div>
+            </div>
+            <a href="tel:${user.Phone}" class="phone">Call</a>
+            <span class="dob">${user.DOB}</span>
+            <address>${user.address}</address>
+            `;
+            // tr.innerHTML = `<td>${user.Name}</td><td>${user.Email}</td><td><a href="tel:${user.Phone}">Call</a></td><td>${user.DOB}</td><td>${getGender(Number(user.gender))}</td><td>${user.address}</td>`;
+            // tr1.innerHTML = `<th>Address: </th><td colspan="4">${user.address}</td>`
+            userTable.appendChild(card);
+            // userTable.appendChild(tr1);
         });
     });
 </script>

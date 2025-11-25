@@ -69,7 +69,7 @@
         data.forEach(user => {
             var tr = document.createElement('tr');
             var tr1 = document.createElement('tr');
-            tr.innerHTML = `<td>${user.Name}</td><td>${user.Email}</td><td><a href="tel:+${user.Phone}">Call</a></td><td>${user.DOB}</td><td>${getGender(Number(user.gender))}</td>`;
+            tr.innerHTML = `<td>${user.Name}</td><td>${user.Email}</td><td><a href="tel:${user.Phone}">Call</a></td><td>${user.DOB}</td><td>${getGender(Number(user.gender))}</td>`;
             tr1.innerHTML = `<th>Address: </th><td colspan="4">${user.address}</td>`
             userTable.appendChild(tr);
             userTable.appendChild(tr1);

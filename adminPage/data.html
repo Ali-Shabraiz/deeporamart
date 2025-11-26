@@ -18,6 +18,7 @@
             justify-content: center;
             height: 100vh;
             padding: 50px;
+            gap: 20px;
             background: #9193b4;
         }
         table{
@@ -32,9 +33,12 @@
             padding: 10px;
         }
         table tr th,table tr td{
-            border-bottom: 1px solid black;
             padding: 10px;
             text-align: center;
+        }
+        table tr td{
+            border-bottom: 1px solid black;
+            
         }
         table tr td.item{
             display: flex;
@@ -66,6 +70,7 @@
             align-items: center;
             /* float: right; */
             margin: auto;
+        
         }
         table tr td .stockNumber button{
             width: 25px;
@@ -74,7 +79,7 @@
             border: none;
             font-size: 1.3em;
             color: #fff;
-            background: green;
+            background: var(--clr);
         }
         table tr td .options{
             display: flex;
@@ -90,18 +95,40 @@
             border: 1px solid var(--clr);
             color: var(--clr);
         }
-
+        form{
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+            background: #fff;
+            padding: 20px;
+            border-radius: 20px;
+        }
+        form input,form button{
+            height: 35px;
+            border-radius: 40px;
+            border: 1px solid #000;
+            padding-left: 10px;
+        }
+        form button{
+            background: red;
+            font-size: 1.1em;
+            color: #fff;
+            border: none;
+            box-shadow: 0 0 10px red;
+        }
       
 
 
     </style>
 </head>
 <body>
-    <form action="#">
-        <input type="text">
-        <input type="number">
-        <input type="number">
-        <input type="file">
+    <form  enctype="multipart/form-data">
+        <h2>Add new Item</h2>
+        <input type="text" name="name" placeholder="Enter Item Name">
+        <input type="number" name="op" placeholder="Orignal Price">
+        <input type="number" name="sp" placeholder="Fake Price">
+        <input name="itemImgge" accept="image/*" type="file">
+        <button type="submit">Add</button>
     </form>
     <table>
         <tr>
@@ -113,28 +140,29 @@
         <tr>
             <td class="item"><img src="../assets/img/WhatsApp Image 2025-10-08 at 16.11.14_4046eca1.jpg" alt=""><div class="content"><span class="name">Cutting Board</span class="op">500<span></span></div></td>
             <td>200</td>
-            <td><div class="stockNumber"><button>-</button><span>2</span><button>+</button></div></td>
+            <td><div class="stockNumber"><button style="--clr: red;">-</button><span>2</span><button style="--clr:green;">+</button></div></td>
             <td><div class="options"><button style="--clr:green;" class="fas fa-edit"></button><button style="--clr:red;" class="fa fa-trash"></button></div></td>
         </tr>
-         <tr>
-            <td class="item"><img src="../assets/img/WhatsApp Image 2025-10-08 at 16.11.14_4046eca1.jpg" alt=""><div class="content"><span class="name">Cutting Board</span class="op">500<span></span></div></td>
-            <td>200</td>
-            <td><div class="stockNumber"><button>-</button><span>2</span><button>+</button></div></td>
-            <td><div class="options"><button style="--clr:green;" class="fas fa-edit"></button><button style="--clr:red;" class="fa fa-trash"></button></div></td>
-        </tr>
-         <tr>
-            <td class="item"><img src="../assets/img/WhatsApp Image 2025-10-08 at 16.11.14_4046eca1.jpg" alt=""><div class="content"><span class="name">Cutting Board</span class="op">500<span></span></div></td>
-            <td>200</td>
-            <td><div class="stockNumber"><button>-</button><span>2</span><button>+</button></div></td>
-            <td><div class="options"><button style="--clr:green;" class="fas fa-edit"></button><button style="--clr:red;" class="fa fa-trash"></button></div></td>
-        </tr>
-     
-   
-    
-       
-        
-       
-        
     </table>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        
+        var addForm = document.querySelector('form');
+        addForm.addEventListener('submit',e=>{
+            e.preventDefault();
+        let formData = new FormData(addForm);
+
+            $.ajax({
+                url: './addData.php',
+                method: 'POST',
+                data: formData,
+                processData: false, // Important for file upload
+                contentType: false, // Important for file upload
+                success: (data) => {
+                    console.log(data);
+                }
+            });
+        });
+    </script>
 </body>
 </html>

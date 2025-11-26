@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Stock Details</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+        *{
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        body{
+            display: flex;
+            align-items: flex-start;
+            justify-content: center;
+            height: 100vh;
+            padding: 50px;
+            background: #9193b4;
+        }
+        table{
+            background: white;
+            padding: 10px;
+            border-spacing: 0;
+            width: 100%;
+            border-radius: 20px;
+        }
+        table tr:first-child{
+            background-color: yellow;
+            padding: 10px;
+        }
+        table tr th,table tr td{
+            border-bottom: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        table tr td.item{
+            display: flex;
+            gap: 15px;
+        }
+        table tr td.item .content{
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            gap: 5px;
+        }
+        table tr td.item .content .name{
+            font-weight: 600;
+        }
+        table tr td.item img{
+            width: 75px;
+            border: 1px solid rgba(0, 0, 0, 0.5);
+        }
+        table tr td .stockNumber{
+            display: flex;
+            width: max-content;
+            /* background: red; */
+            border-radius: 20px;
+            /* justify-content: center; */
+            gap: 10px;
+            display: flex;
+            /* border: 2px solid green; */
+            justify-content: center;
+            align-items: center;
+            /* float: right; */
+            margin: auto;
+        }
+        table tr td .stockNumber button{
+            width: 25px;
+            height: 25px;
+            border-radius: 50%;
+            border: none;
+            font-size: 1.3em;
+            color: #fff;
+            background: green;
+        }
+        table tr td .options{
+            display: flex;
+            gap: 15px;
+            /* background: red; */
+            /* align-items: center; */
+            height: 100%;
+            justify-content: center;
+        }
+        table tr td .options button{
+            width: 30px;
+            height: 30px;
+            border: 1px solid var(--clr);
+            color: var(--clr);
+        }
+
+      
+
+
+    </style>
+</head>
+<body>
+    <form action="#">
+        <input type="text">
+        <input type="number">
+        <input type="number">
+        <input type="file">
+    </form>
+    <table>
+        <tr>
+            <th>Product</th>
+            <th>Sell</th>
+            <th>Stock</th>
+            <th>Options</th>
+        </tr>
+        <tr>
+            <td class="item"><img src="../assets/img/WhatsApp Image 2025-10-08 at 16.11.14_4046eca1.jpg" alt=""><div class="content"><span class="name">Cutting Board</span class="op">500<span></span></div></td>
+            <td>200</td>
+            <td><div class="stockNumber"><button>-</button><span>2</span><button>+</button></div></td>
+            <td><div class="options"><button style="--clr:green;" class="fas fa-edit"></button><button style="--clr:red;" class="fa fa-trash"></button></div></td>
+        </tr>
+         <tr>
+            <td class="item"><img src="../assets/img/WhatsApp Image 2025-10-08 at 16.11.14_4046eca1.jpg" alt=""><div class="content"><span class="name">Cutting Board</span class="op">500<span></span></div></td>
+            <td>200</td>
+            <td><div class="stockNumber"><button>-</button><span>2</span><button>+</button></div></td>
+            <td><div class="options"><button style="--clr:green;" class="fas fa-edit"></button><button style="--clr:red;" class="fa fa-trash"></button></div></td>
+        </tr>
+         <tr>
+            <td class="item"><img src="../assets/img/WhatsApp Image 2025-10-08 at 16.11.14_4046eca1.jpg" alt=""><div class="content"><span class="name">Cutting Board</span class="op">500<span></span></div></td>
+            <td>200</td>
+            <td><div class="stockNumber"><button>-</button><span>2</span><button>+</button></div></td>
+            <td><div class="options"><button style="--clr:green;" class="fas fa-edit"></button><button style="--clr:red;" class="fa fa-trash"></button></div></td>
+        </tr>
+     
+   
+    
+       
+        
+       
+        
+    </table>
+</body>
+</html>

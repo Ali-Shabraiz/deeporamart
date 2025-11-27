@@ -119,9 +119,6 @@
             border: none;
             box-shadow: 0 0 10px red;
         }
-      
-
-
     </style>
 </head>
 <body>
@@ -178,10 +175,21 @@
                 tr.innerHTML = `
             <td class="item"><img src="../assets/img/${item.imgPath}" alt=""><div class="content"><span class="name">${item.Name}</span><span class="op">${item.op}</span></div></td>
             <td>${item.sp}</td>
-            <td><div class="stockNumber"><button style="--clr: red;">-</button><span>2</span><button style="--clr:green;">+</button></div></td>
+            <td><div class="stockNumber"><button style="--clr: red;">-</button><span>${item.quantity}</span><button onclick="updateQuantity(${item.ID},${item.quantity})" style="--clr:green;">+</button></div></td>
             <td><div class="options"><button style="--clr:green;" class="fas fa-edit"></button><button style="--clr:red;" class="fa fa-trash"></button></div></td>
                 `;
                 itemsTable.appendChild(tr);
+            });
+        }
+        function updateQuantity(i,value){
+            var val = value+1;
+             $.ajax({
+                url: './PHP/changeStockNum.php',
+                method: 'POST',
+                data: {id:i,quan:valu},
+                success: (data) => {
+                    console.log(data);
+                }
             });
         }
     </script>

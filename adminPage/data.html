@@ -15,8 +15,9 @@
         body{
             display: flex;
             align-items: flex-start;
-            justify-content: center;
+            justify-content: space-evenly;
             height: 100vh;
+            flex-wrap: wrap;
             padding: 50px;
             gap: 20px;
             background: #9193b4;
@@ -25,6 +26,7 @@
             background: white;
             padding: 10px;
             border-spacing: 0;
+            /* width: fit-content; */
             width: 100%;
             border-radius: 20px;
         }
@@ -56,6 +58,7 @@
         table tr td.item img{
             width: 75px;
             border: 1px solid rgba(0, 0, 0, 0.5);
+            padding: 5px;
         }
         table tr td .stockNumber{
             display: flex;
@@ -124,36 +127,31 @@
 <body>
     <form  enctype="multipart/form-data">
         <h2>Add new Item</h2>
-        <input type="text" name="name" placeholder="Enter Item Name">
-        <input type="number" name="op" placeholder="Orignal Price">
-        <input type="number" name="sp" placeholder="Fake Price">
-        <input name="itemImgge" accept="image/*" type="file">
+        <input type="text" name="name" placeholder="Enter Item Name" required>
+        <input type="number" name="op" placeholder="Orignal Price" required>
+        <input type="number" name="sp" placeholder="Fake Price" required>
+        <input name="itemImage" accept="image/*" type="file" required>
         <button type="submit">Add</button>
     </form>
-    <table>
+    <table id="itemsTable">
         <tr>
             <th>Product</th>
             <th>Sell</th>
             <th>Stock</th>
             <th>Options</th>
         </tr>
-        <tr>
-            <td class="item"><img src="../assets/img/WhatsApp Image 2025-10-08 at 16.11.14_4046eca1.jpg" alt=""><div class="content"><span class="name">Cutting Board</span class="op">500<span></span></div></td>
-            <td>200</td>
-            <td><div class="stockNumber"><button style="--clr: red;">-</button><span>2</span><button style="--clr:green;">+</button></div></td>
-            <td><div class="options"><button style="--clr:green;" class="fas fa-edit"></button><button style="--clr:red;" class="fa fa-trash"></button></div></td>
-        </tr>
+        
     </table>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-        
+        var itemsTable = document.getElementById('itemsTable')
         var addForm = document.querySelector('form');
         addForm.addEventListener('submit',e=>{
             e.preventDefault();
         let formData = new FormData(addForm);
 
             $.ajax({
-                url: './addData.php',
+                url: './PHP/addData.php',
                 method: 'POST',
                 data: formData,
                 processData: false, // Important for file upload
@@ -163,6 +161,29 @@
                 }
             });
         });
+
+        function fetch_items(){
+            fetch('./PHP/fetch_all_items.php').then(res => {
+                return res.json();
+            }).then(data => {
+                displayData(data);
+            })
+        }
+        fetch_items()
+        function displayData(data){
+            console.log(data);
+            
+            data.forEach(item => {
+                var tr = document.createElement('tr');
+                tr.innerHTML = `
+            <td class="item"><img src="../assets/img/${item.imgPath}" alt=""><div class="content"><span class="name">${item.Name}</span><span class="op">${item.op}</span></div></td>
+            <td>${item.sp}</td>
+            <td><div class="stockNumber"><button style="--clr: red;">-</button><span>2</span><button style="--clr:green;">+</button></div></td>
+            <td><div class="options"><button style="--clr:green;" class="fas fa-edit"></button><button style="--clr:red;" class="fa fa-trash"></button></div></td>
+                `;
+                itemsTable.appendChild(tr);
+            });
+        }
     </script>
 </body>
 </html>

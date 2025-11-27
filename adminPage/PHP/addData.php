@@ -2,7 +2,7 @@
 include "../../PHP/config.php";
 $date = date("j/m/Y H:iA");
 // Target directory for image upload
-$targetDir = "../assets/img/";
+$targetDir = "../../assets/img/";
 $imagePath = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
@@ -37,10 +37,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Insert into DB using prepared statements
-    $stmt = $connection->prepare("INSERT INTO stock (Name, imgPath, op, sp) VALUES (?, ?, ?, ?, ?)");
+    $stmt = $conn->prepare("INSERT INTO stock (Name, imgPath, op, sp) VALUES (?, ?, ?, ?)");
 
     if (!$stmt) {
-        die("Prepare failed: " . $connection->error);
+        die("Prepare failed: " . $conn->error);
     }
 
     $stmt->bind_param("ssdd", $name,$imagePath,$price,$sp);
@@ -52,7 +52,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     $stmt->close();
-    $connection->close();
+    $conn->close();
 } else {
     echo "Invalid request.";
 }

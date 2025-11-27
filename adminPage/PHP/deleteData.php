@@ -1,8 +1,7 @@
 <?php
     include "../../PHP/config.php";
     $id = $_POST['id'];
-    $qu = $_POST['quan'];
-    $query = "UPDATE `stock` SET `quantity` = '$qu' WHERE `ID` = '$id'";
+    $query = "DELETE FROM `stock` WHERE `ID` = '$id'";
     $result = mysqli_query($conn, $query) or die("Failed to run Query");
     mysqli_close($conn);
 ?>

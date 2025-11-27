@@ -154,7 +154,7 @@
                 processData: false, // Important for file upload
                 contentType: false, // Important for file upload
                 success: (data) => {
-                    console.log(data);
+                    fetch_items();
                 }
             });
         });
@@ -163,6 +163,12 @@
             fetch('./PHP/fetch_all_items.php').then(res => {
                 return res.json();
             }).then(data => {
+                  itemsTable.innerHTML = ` <tr>
+            <th>Product</th>
+            <th>Sell</th>
+            <th>Stock</th>
+            <th>Options</th>
+        </tr>`;
                 displayData(data);
             })
         }
@@ -175,20 +181,35 @@
                 tr.innerHTML = `
             <td class="item"><img src="../assets/img/${item.imgPath}" alt=""><div class="content"><span class="name">${item.Name}</span><span class="op">${item.op}</span></div></td>
             <td>${item.sp}</td>
-            <td><div class="stockNumber"><button style="--clr: red;">-</button><span>${item.quantity}</span><button onclick="updateQuantity(${item.ID},${item.quantity})" style="--clr:green;">+</button></div></td>
-            <td><div class="options"><button style="--clr:green;" class="fas fa-edit"></button><button style="--clr:red;" class="fa fa-trash"></button></div></td>
+            <td><div class="stockNumber"><button style="--clr: red;" onclick="updateQuantity(${item.ID},this.value,'-')" id="minus${item.ID}">-</button><span id="stockNumber${item.ID}">${item.quantity}</span><button onclick="updateQuantity(${item.ID},this.value,'+')" id="plus${item.ID}" value="${item.quantity}" style="--clr:green;">+</button></div></td>
+            <td><div class="options"><button style="--clr:green;" class="fas fa-edit"></button><button style="--clr:red;" class="fa fa-trash" onclick="deletedata(${item.ID})"></button></div></td>
                 `;
                 itemsTable.appendChild(tr);
             });
         }
-        function updateQuantity(i,value){
-            var val = value+1;
+        function updateQuantity(i,value,sign){
+            var val = eval(`${value}${sign}1`);
+                document.getElementById(`plus${i}`).value = val;
+                document.getElementById(`minus${i}`).value = val;
+                document.getElementById(`stockNumber${i}`).textContent = val;
+
              $.ajax({
                 url: './PHP/changeStockNum.php',
                 method: 'POST',
-                data: {id:i,quan:valu},
+                data: {id:i,quan:val},
                 success: (data) => {
-                    console.log(data);
+                  
+                    // fetch_items();
+                }
+            });
+        }
+        function deletedata(i){
+            $.ajax({
+                url: './PHP/deleteData.php',
+                method: 'POST',
+                data: {id:i},
+                success: (data) => {
+                    fetch_items();
                 }
             });
         }

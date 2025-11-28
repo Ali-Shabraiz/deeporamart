@@ -131,7 +131,7 @@
     </style>
 </head>
 <body>
-    <form  enctype="multipart/form-data">
+    <form  enctype="multipart/form-data" id="addItemForm">
         <h2>Add new Item</h2>
         <input type="text" name="name" placeholder="Enter Item Name" required>
         <input type="number" name="op" placeholder="Orignal Price" required>
@@ -150,8 +150,9 @@
     </table>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-        var itemsTable = document.getElementById('itemsTable')
-        var addForm = document.querySelector('form');
+        var itemsTable = document.getElementById('itemsTable');
+        var addForm = document.querySelector('#addItemForm');
+        var inputsOfaddform= document.querySelectorAll("#addItemForm input");
         addForm.addEventListener('submit',e=>{
             e.preventDefault();
         let formData = new FormData(addForm);
@@ -163,6 +164,9 @@
                 processData: false, // Important for file upload
                 contentType: false, // Important for file upload
                 success: (data) => {
+                    inputsOfaddform[0].value = '';
+                    inputsOfaddform[1].value = '';
+                    inputsOfaddform[2].value = '';
                     fetch_items();
                 }
             });

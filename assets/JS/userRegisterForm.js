@@ -74,7 +74,7 @@ form.addEventListener("submit", (e) => {
   const formData = new FormData(form);
 
   // send the data somewhere
-  console.log(Object.fromEntries(formData));
+  
 
   submitButton.disabled = true;
   submitButton.textContent = "Submitting...";

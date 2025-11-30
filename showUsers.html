@@ -35,7 +35,7 @@
             display: flex;
             flex-direction: column;
             gap: 10px;
-            min-height: 250px;   
+            min-height: max-content;   
         }
 
         .container .user .basicD{
@@ -63,22 +63,17 @@
             color: rgba(0, 0, 0, 0.5);
         }
         .container .user .phone{
-            position: absolute;
+            /* position: absolute;
             top: 10px;
-            right: 10px;
+            right: 10px; */
             background: #000;
             color: #fff;
             padding: 5px;
             text-decoration: none;
+            width: max-content;
             border-radius: 20px;
         }
-        .container .user .dob{
-            padding: 5px;
-            border-radius: 15px;
-            background: rgba(0,0, 0, 0.7);
-            color: #fff;
-            width: max-content;
-        }
+        
         .container .user address{
             /* align-self: center; */
         }
@@ -149,7 +144,7 @@
                     <a href="mail:${user.Email}" class="email">${user.Email}</a>
                 </div>
             </div>
-            <a href="tel:${user.Phone}" class="phone">Call</a>
+            <a href="tel:${user.Phone}" class="phone">${user.Phone}</a>
             <p>${user.bio}</p>
             `;
             // tr.innerHTML = `<td>${user.Name}</td><td>${user.Email}</td><td><a href="tel:${user.Phone}">Call</a></td><td>${user.DOB}</td><td>${getGender(Number(user.gender))}</td><td>${user.address}</td>`;

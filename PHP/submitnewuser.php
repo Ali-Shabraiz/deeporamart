@@ -11,7 +11,7 @@ if ($conn->connect_error) {
 $stmt = $conn->prepare("INSERT INTO users (Name, Email, Phone,gender, bio) VALUES (?,?,?,?,?)");
 
 // Bind parameters: "sssss" = all 5 values are strings
-$stmt->bind_param("sssss", $name, $email, $phone,$DOB,$gender, $bio);
+$stmt->bind_param("sssss", $name, $email, $phone,$gender, $bio);
 
 // Get data from POST request
 $name = $_POST['name'];

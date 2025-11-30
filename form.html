@@ -2,184 +2,105 @@
 <html lang="en">
 
 <head>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: Arial, Helvetica, sans-serif;
-        }
-
-        body {
-            /* background: #000; */
-            background-image: url("./assets/img/cover.jpeg");
-            background-size: cover;
-            background-position: left;
-
-        }
-
-        .main {
-            height: 100vh;
-            /* align-items: center; */
-            justify-content: center;
-            display: flex;
-            color: #fff;
-            /* color:; */
-            /* background-attachment: fixed; */
-
-            padding: 30px 15px;
-        }
-
-        .center {
-            text-align: center;
-        }
-
-        form {
-            display: flex;
-            width: 600px;
-            height: auto;
-            padding: 20px;
-            background: rgba(255, 255, 255, 0.2);
-            backdrop-filter: blur(3px);
-            flex-direction: column;
-            gap: 10px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.342);
-            border-radius: 20px;
-            border: 2px solid #fff;
-        }
-
-        section.two {
-            display: flex;
-            gap: 30px;
-            width: 100%;
-            /* background: red; */
-        }
-
-        .field {
-            display: flex;
-            width: 100%;
-            flex-direction: column;
-            /* background: yellow; */
-            gap: 5px;
-            /* background: red; */
-            justify-content: center;
-        }
-
-        .field input,
-        .field textarea {
-            padding: 10px;
-            border-radius: 20px;
-            border: none;
-            padding-left: 10px;
-            background-color: #00000021;
-            transition: 0.2s;
-            width: 100%;
-        }
-
-        .field textarea {
-            resize: vertical;
-            min-height: 150px;
-        }
-
-        .field input:focus,
-        .field textarea:focus {
-            background: #fff;
-            border: none;
-            outline: none;
-            box-shadow: 0 0 5px #000;
-        }
-
-        input[type="radio"]:focus {
-            box-shadow: none !important;
-        }
-
-        input[type="radio"] {
-            accent-color: orange;
-        }
-
-        .flex {
-            display: flex;
-            /* justify-content: space-evenly; */
-            gap: 20px;
-        }
-
-        label {
-            font-weight: 500;
-            font-size: 0.8em;
-        }
-
-        button {
-            padding: 10px;
-            border: none;
-            border-radius: 20px;
-            color: #fff;
-            background: orangered;
-            box-shadow: 0 0 10px orangered;
-        }
-
-        @media (max-width: 650px) {
-            form {
-                width: 100%;
-            }
-        }
-
-        @media (max-width: 520px) {
-            section.two {
-                flex-wrap: wrap;
-                gap: 10px;
-            }
-        }
-    </style>
+    <link rel="stylesheet" href="./assets/CSS/addUserform.css">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
 </head>
 
 <body>
-    <div class="main">
-        <form id="form">
-            <h2 class="center">Register an Account</h2>
-            <h3>Basic Info</h3>
-            <section class="two">
-                <div class="field">
-                    <label for="nameBar">Full Name</label>
-                    <input type="text" name="name" id="nameBar" placeholder="Enter Full Name" required>
-                </div>
-                <div class="field">
-                    <label for="emailBar">Email</label>
-                    <input type="email" id="emailBar" name="email" placeholder="example@gmail.com" required>
-                </div>
-            </section>
-            <section class="two">
-                <div class="field">
-                    <label for="DOBBar">Date of Birth</label>
-                    <input type="date" name="DOB" id="DOBBar">
-                </div>
-                <div class="field">
-                    <label>Gender</label>
-                    <div class="flex">
-                        <input type="radio" name="gender" value="1" id="male">
-                        <label for="male">Male</label>
-                        <input type="radio" name="gender" value="2" id="feMale">
-                        <label for="feMale">Female</label>
-                    </div>
-                </div>
-            </section>
-            <div class="field">
-                <label for="phoneBar">Phone</label>
-                <input type="tel" name="phone" id="phoneBar" placeholder="Enter Phone Number" required>
+    <!-- <div class="main"> -->
+        <form class="form-wizard">
+      <!-- .completed -->
+      <div class="completed" hidden>
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          viewBox="0 0 24 24"
+          stroke-width="1.5"
+          stroke="currentColor"
+        >
+          <path
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            d="M9 12.75 11.25 15 15 9.75M21 12a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+          />
+        </svg>
+
+        <h3>Registration Successful!</h3>
+        <p>Your account has been created.</p>
+      </div>
+      <!-- /.completed -->
+
+      <h1>Registration</h1>
+
+      <!-- .progress-container -->
+      <div class="progress-container">
+        <div class="progress"></div>
+
+        <ol>
+          <li class="current">Personal</li>
+          <li>Contact</li>
+          <!-- <li>Account</li> -->
+          <li>About</li>
+        </ol>
+      </div>
+      <!-- /.progress-container -->
+
+      <!-- .steps-container -->
+      <div class="steps-container">
+        <div class="step">
+          <h3>Personal Information</h3>
+
+          <div class="form-control">
+            <label for="full-name">First Name</label>
+            <input type="text" id="full-name" name="first-name" required />
+          </div>
+          <div class="form-control">
+            <!-- <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" name="last-name" required /> -->
+            <div class="gender">
+            <label for="male">Male</label>
+            <input type="radio" id="male" name="gender">
+            <label for="female">female</label>
+            <input type="radio" name="gender" id="female">
             </div>
-            <section class="two">
-                <div class="field">
-                    <label for="locationBar">Address</label>
-                    <textarea name="address" placeholder="Enter your Address" id="locationBar" required></textarea>
-                </div>
-            </section>
-            <h2>Education</h2>
-            <section></section>
-            <button>Register</button>
-        </form>
-    </div>
+          </div>
+        </div>
+        <div class="step">
+          <h3>Contact Information</h3>
+
+          <div class="form-control">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required />
+          </div>
+
+          <div class="form-control">
+            <label for="phone">Phone</label>
+            <input type="tel" id="phone" name="phone" required />
+          </div>
+        </div>
+        <div class="step">
+          <h3>About</h3>
+
+          <div class="form-control">
+            <label for="bio">Bio</label>
+            <textarea name="bio" id="bio" rows="4" required></textarea>
+          </div>
+        </div>
+      </div>
+      <!-- /.steps-container -->
+
+      <!-- .controls -->
+      <div class="controls">
+        <button type="button" class="prev-btn">Prev</button>
+        <button type="button" class="next-btn">Next</button>
+        <button type="submit" class="submit-btn">Submit</button>
+      </div>
+      <!-- /.controls -->
+    </form>
+    <!-- </div> -->
+    <script src="./assets/JS/userRegisterForm.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         var form = document.getElementById('form');

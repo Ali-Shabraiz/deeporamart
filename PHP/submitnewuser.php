@@ -8,18 +8,17 @@ if ($conn->connect_error) {
 }
 
 // Prepare SQL statement (safe from SQL injection)
-$stmt = $conn->prepare("INSERT INTO users (Name, Email, Phone,DOB,gender, address) VALUES (?,?,?,?,?,?)");
+$stmt = $conn->prepare("INSERT INTO users (Name, Email, Phone,gender, bio) VALUES (?,?,?,?,?)");
 
 // Bind parameters: "sssss" = all 5 values are strings
-$stmt->bind_param("ssssss", $name, $email, $phone,$DOB,$gender, $address);
+$stmt->bind_param("ssssss", $name, $email, $phone,$DOB,$gender, $bio);
 
 // Get data from POST request
 $name = $_POST['name'];
 $email = $_POST['email'];
 $phone = $_POST['phone'];
-$DOB = $_POST['DOB'];
 $gender = $_POST['gender'];
-$address = $_POST['address'];
+$bio = $_POST['bio'];
 
 // Execute query
 if ($stmt->execute()) {

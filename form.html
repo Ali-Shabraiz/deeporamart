@@ -10,7 +10,7 @@
 
 <body>
     <!-- <div class="main"> -->
-        <form class="form-wizard">
+        <form class="form-wizard" id="userAddForm">
       <!-- .completed -->
       <div class="completed" hidden>
         <svg
@@ -54,7 +54,7 @@
 
           <div class="form-control">
             <label for="full-name">First Name</label>
-            <input type="text" id="full-name" name="first-name" required />
+            <input type="text" id="full-name" name="name" required />
           </div>
           <div class="form-control">
             <!-- <label for="last-name">Last Name</label>
@@ -103,7 +103,7 @@
     <script src="./assets/JS/userRegisterForm.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
-        var form = document.getElementById('form');
+        var form = document.getElementById('userAddForm');
         form.addEventListener('submit',e => {
             e.preventDefault();
             $.ajax({

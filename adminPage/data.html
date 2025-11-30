@@ -134,9 +134,10 @@
     <form  enctype="multipart/form-data" id="addItemForm">
         <h2>Add new Item</h2>
         <input type="text" name="name" placeholder="Enter Item Name" required>
-        <input type="number" name="op" placeholder="Orignal Price" required>
-        <input type="number" name="sp" placeholder="Fake Price" required>
+        <input type="number" name="op" placeholder="Orignal Price">
+        <input type="number" name="sp" placeholder="Fake Price">
         <input name="itemImage" accept="image/*" type="file" required>
+        <input type="hidden" name="j" id="editItemId" value="">
         <button type="submit">Add</button>
     </form>
     <table id="itemsTable">
@@ -152,11 +153,21 @@
     <script>
         var itemsTable = document.getElementById('itemsTable');
         var addForm = document.querySelector('#addItemForm');
+        var editItemId = document.getElementById('editItemId');
         var inputsOfaddform= document.querySelectorAll("#addItemForm input");
+        let formData;
         addForm.addEventListener('submit',e=>{
             e.preventDefault();
-        let formData = new FormData(addForm);
+         formData = new FormData(addForm);
 
+        if(editItemId.value = '')
+            adddata();
+        else{
+            editdata(editItemId.value);
+        }
+            
+        });
+        function adddata(){
             $.ajax({
                 url: './PHP/addData.php',
                 method: 'POST',
@@ -170,7 +181,26 @@
                     fetch_items();
                 }
             });
-        });
+        }
+        function activeEdit(id){
+            editItemId.value = id;
+        }
+        function editdata(id){
+            $.ajax({
+                url: './PHP/editData.php',
+                method: 'POST',
+                data: formData,
+                processData: false, // Important for file upload
+                contentType: false, // Important for file upload
+                success: (data) => {
+                    inputsOfaddform[0].value = '';
+                    inputsOfaddform[1].value = '';
+                    inputsOfaddform[2].value = '';
+                    editItemId.value = '';
+                    fetch_items();
+                }
+            });
+        }
 
         function fetch_items(){
             fetch('./PHP/fetch_all_items.php').then(res => {
@@ -195,7 +225,7 @@
             <td class="item"><img src="../assets/img/${item.imgPath}" alt=""><div class="content"><span class="name">${item.Name}</span><span class="op">${item.op}</span></div></td>
             <td>${item.sp}</td>
             <td><div class="stockNumber"><button style="--clr: red;" onclick="updateQuantity(${item.ID},this.value,'-')" id="minus${item.ID}">-</button><span id="stockNumber${item.ID}">${item.quantity}</span><button onclick="updateQuantity(${item.ID},this.value,'+')" id="plus${item.ID}" value="${item.quantity}" style="--clr:green;">+</button></div></td>
-            <td><div class="options"><button style="--clr:green;" class="fas fa-edit"></button><button style="--clr:red;" class="fa fa-trash" onclick="deletedata(${item.ID})"></button></div></td>
+            <td><div class="options"><button style="--clr:green;" class="fas fa-edit" onclick="activeEdit(${item.ID})"></button><button style="--clr:red;" class="fa fa-trash" onclick="deletedata(${item.ID})"></button></div></td>
                 `;
                 itemsTable.appendChild(tr);
             });

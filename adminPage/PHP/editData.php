@@ -6,17 +6,17 @@ $targetDir = "../../assets/img/";
 $imagePath = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $name = $_POST['name'];
-    $sp = $_POST['sp'];
-    $price = $_POST['op'];
-    $id = $_POST['j'];
+   echo $name = $_POST['name'];
+   echo $sp = $_POST['sp'];
+   echo $price = $_POST['op'];
+    echo $id = $_POST['j'];
 
     // Validate and upload the image
     if (isset($_FILES['itemImage']) && $_FILES['itemImage']['error'] === UPLOAD_ERR_OK) {
         $tmpName = $_FILES['itemImage']['tmp_name'];
         $originalName = basename($_FILES['itemImage']['name']);
         $extension = strtolower(pathinfo($originalName, PATHINFO_EXTENSION));
-        $allowed = ['jpg', 'jpeg', 'png', 'gif'];
+        $allowed = ['jpg', 'jpeg', 'png', 'gif','webp'];
 
         if (in_array($extension, $allowed)) {
             // Generate unique filename
@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Insert into DB using prepared statements
-    $stmt = $conn->prepare("INSERT INTO stock SET  Name = ?, imgPath = ?, op = ?, sp = ? WHERE ID = ?");
+    $stmt = $conn->prepare("UPDATE stock SET  Name = ?, imgPath = ?, op = ?, sp = ? WHERE ID = ?");
 
     if (!$stmt) {
         die("Prepare failed: " . $conn->error);

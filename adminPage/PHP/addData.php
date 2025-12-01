@@ -15,7 +15,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $tmpName = $_FILES['itemImage']['tmp_name'];
         $originalName = basename($_FILES['itemImage']['name']);
         $extension = strtolower(pathinfo($originalName, PATHINFO_EXTENSION));
-        $allowed = ['jpg', 'jpeg', 'png', 'gif'];
+        $allowed = ['jpg', 'jpeg', 'png', 'gif','webp'];
 
         if (in_array($extension, $allowed)) {
             // Generate unique filename

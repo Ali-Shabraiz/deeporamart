@@ -137,8 +137,8 @@
     <form  enctype="multipart/form-data" id="addItemForm">
         <h2><span id="formtext">Add</span> Item</h2>
         <input type="text" name="name" placeholder="Enter Item Name" required>
-        <input type="number" name="op" placeholder="buy Price">
-        <input type="number" name="sp" placeholder="Sale Price">
+        <input type="number" name="op" placeholder="buy Price" required>
+        <input type="number" name="sp" placeholder="Sale Price" required>
         <input name="itemImage" accept="image/*" type="file" required>
         <input type="hidden" name="j" id="editItemId" value="">
         <button type="submit">Add</button>

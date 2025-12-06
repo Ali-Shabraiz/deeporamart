@@ -7,7 +7,7 @@ include "../../PHP/config.php";
     echo $pass;
     echo $email;
     $stmt = $conn->prepare("SELECT * FROM our_staff WHERE password = ?");
-    $stmt->bind_param("s", $name);
+    $stmt->bind_param("s", $pass);
     $stmt->execute();
     $result = $stmt->get_result();
 

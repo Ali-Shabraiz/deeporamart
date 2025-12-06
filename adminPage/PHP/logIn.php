@@ -3,8 +3,11 @@ include "../../PHP/config.php";
     $name = $_POST['Name'];
     $pass = $_POST['pass'];
     $email = $_POST['email'];
-    $stmt = $conn->prepare("SELECT * FROM our_staff WHERE password = ? AND name = ? AND email = ?");
-    $stmt->bind_param("sss", $pass,$name,$email);
+    echo $name;
+    echo $pass;
+    echo $email;
+    $stmt = $conn->prepare("SELECT * FROM our_staff WHERE password = ?");
+    $stmt->bind_param("s", $name);
     $stmt->execute();
     $result = $stmt->get_result();
 

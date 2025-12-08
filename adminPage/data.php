@@ -1,9 +1,11 @@
 <?php
      session_start();
-     if(!isset($_SESSION['user'])){
+     if(!isset($_SESSION['token'])){
      header('Location: ./index.html');
-        
-
+     }
+     else{
+       
+        $token = trim($_SESSION['token']);
      }
 
 ?>
@@ -34,7 +36,6 @@
             <th>Stock</th>
             <th>Options</th>
         </tr>
-        
     </table>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
@@ -102,10 +103,10 @@
         }
 
         function fetch_items(){
-            fetch('./PHP/fetch_all_items.php').then(res => {
+            fetch('./PHP/fetch_all_items.php?tt=<?Php echo $token;?>').then(res => {
                 return res.json();
             }).then(data => {
-                  itemsTable.innerHTML = ` <tr>
+                  itemsTable.innerHTML = `<tr>
             <th>Product</th>
             <th>Sell</th>
             <th>Stock</th>
@@ -136,7 +137,7 @@
                 document.getElementById(`stockNumber${i}`).textContent = val;
 
              $.ajax({
-                url: './PHP/changeStockNum.php',
+                url: './PHP/changeStockNum.php?tt=<?Php echo $token;?>',
                 method: 'POST',
                 data: {id:i,quan:val},
                 success: (data) => {
@@ -147,7 +148,7 @@
         }
         function deletedata(i){
             $.ajax({
-                url: './PHP/deleteData.php',
+                url: './PHP/deleteData.php?tt=<?Php echo $token;?>',
                 method: 'POST',
                 data: {id:i},
                 success: (data) => {

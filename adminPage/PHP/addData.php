@@ -1,6 +1,16 @@
 <?php
 include "../../PHP/config.php";
-$date = date("j/m/Y H:iA");
+// if (isset($_GET['tt'])) {
+//     $tokenInput = trim($_GET['tt']); // Remove extra spaces/newlines
+//     $token_value = $tokenInput;
+// }
+
+//  $stmt = $conn->prepare("SELECT token FROM our_staff WHERE token = ?");
+// $stmt->bind_param("s", $token_value);
+// $stmt->execute();
+// $result = $stmt->get_result();
+// if ($result->num_rows > 0) {
+    $date = date("j/m/Y H:iA");
 // Target directory for image upload
 $targetDir = "../../assets/img/";
 $imagePath = "";
@@ -56,4 +66,16 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 } else {
     echo "Invalid request.";
 }
+
+
+
+// }
+// else {
+//         $stmt->close();
+//         $conn->close();
+//         echo json_encode([
+//             "code" => 400,
+//             "message" => "Invalid Method"
+//         ]);
+//     }
 ?>

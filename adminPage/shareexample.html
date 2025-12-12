@@ -128,7 +128,7 @@
             fetch('./PHP/fetch_all_items_for_user.php').then(res => {
                 return res.json();
             }).then(data => {
-                // itemsTable.innerHTML = ``;
+                itemsTable.innerHTML = ``;
                 displayData(data);
             })
         }

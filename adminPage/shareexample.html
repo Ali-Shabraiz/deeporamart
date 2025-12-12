@@ -29,8 +29,12 @@
             height: auto;
             border-radius: 20px;
             position: relative;
+            display: flex;
             /* overflow: hidden; */
             flex-direction: column;
+            justify-content: space-between;
+            /* background: black; */
+            gap: 10px;
         }
 
         .container .item span {
@@ -66,7 +70,7 @@
             text-align: justify;
         }
 
-        .container .item  .buttons {
+        .container .item .buttons {
             display: flex;
             gap: 15px;
         }
@@ -135,7 +139,8 @@
             data.forEach(item => {
                 var tr = document.createElement('div');
                 tr.classList.add('item');
-                tr.innerHTML = `<div class="item">
+                tr.innerHTML = `
+                    <section>
             <span class="coupon" style="--l:5px;--r:auto;">Zain501</span>
             <span class="discount" style="--l:auto;--r:5px;">-10%</span>
             <img src="../assets/img/${item.imgPath}">
@@ -144,11 +149,13 @@
                 <p style="--w:100%">Lorem ipsum dolor sit amet culpa, autem ea corrupti voluptatum recusandae necessitatibus atque consequuntur incidunt perspiciatis!</p>
                  <strike class="op">${item.sp}</strike>
                  <h3 class="sp blackButton">${item.sp * 0.9}</h3>
-                 <div class="buttons" style="--w:100%;">
+                 
+            </div>  
+              
+            </section>   
+            <div class="buttons" style="--w:100%;">
                     <button>copy</button><button class="blackButton">Share</button>
-                 </div>
-            </div>            
-        </div>`;
+                 </div>`;
                 itemsTable.appendChild(tr);
             });
         }

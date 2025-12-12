@@ -6,10 +6,11 @@ $targetDir = "../../assets/img/";
 $imagePath = "";
 
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-   echo $name = $_POST['name'];
-   echo $sp = $_POST['sp'];
-   echo $price = $_POST['op'];
-    echo $id = $_POST['j'];
+    $name = $_POST['name'];
+    $sp = $_POST['sp'];
+    $price = $_POST['op'];
+     $id = $_POST['j'];
+     $para = $_POST['para'];
 
     // Validate and upload the image
     if (isset($_FILES['itemImage']) && $_FILES['itemImage']['error'] === UPLOAD_ERR_OK) {
@@ -38,13 +39,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Insert into DB using prepared statements
-    $stmt = $conn->prepare("UPDATE stock SET  Name = ?, imgPath = ?, op = ?, sp = ? WHERE ID = ?");
+    $stmt = $conn->prepare("UPDATE stock SET  Name = ?, imgPath = ?,para = ?, op = ?, sp = ? WHERE ID = ?");
 
     if (!$stmt) {
         die("Prepare failed: " . $conn->error);
     }
 
-    $stmt->bind_param("ssddd", $name,$imagePath,$price,$sp,$id);
+    $stmt->bind_param("sssddd", $name,$imagePath,$para,$price,$sp,$id);
 
     if ($stmt->execute()) {
         echo "Item Edit successfully.";

@@ -18,9 +18,9 @@
     <script>
         function getGender(value){
             switch(value){
-                case 1: return "./assets/img/man.png";
+                case 1: return "../assets/img/man.png";
                 break;
-                case 2: return "./assets/img/woman.png";
+                case 2: return "../assets/img/woman.png";
                 break;
             }
     }
@@ -38,7 +38,7 @@
                 <img src="${getGender(Number(user.gender))}" alt="">
                 <div class="content">
                     <div class="name">${user.Name}</div>
-                    <a href="mail:${user.Email}" class="email">${user.Email}</a>
+                    <a href="mailto:${user.Email}" class="email">${user.Email}</a>
                 </div>
             </div>
             <a href="tel:${user.Phone}" class="phone">${user.Phone}</a>

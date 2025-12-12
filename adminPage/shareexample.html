@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your WorkSpace</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, Helvetica, sans-serif;
+        }
+        .container{
+            display: flex;
+            gap: 10px;
+            height: auto;
+            width: 100%;
+            flex-wrap: wrap;
+            padding: 20px;
+            justify-content: space-between;
+        }
+        .container .item{
+            width: 250px;
+            height: auto;
+            border-radius: 20px;
+            position: relative;
+            /* overflow: hidden; */
+        }
+        .container .item span{
+            position: absolute;
+            right: var(--r);
+            left: var(--l);
+            top: 5px;
+            border-radius: 30px;
+            padding: 5px 10px;
+            background: #fff;
+
+        }
+        .container .item img{
+            width: 100%;
+            border-radius: 10px;
+        }
+        .container .item .content{
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: space-between;
+            gap: 10px;
+        }
+        .container .item .content *{
+            width: var(--w);
+
+        }
+        .container .item .content h2,
+        .container .item .content p{
+            text-align: justify;
+        }
+        .container .item .content .buttons{
+            display: flex;
+            gap: 15px;
+        }
+        .container .item .content .buttons button{
+            padding: 5px 0;
+            border: 2px solid black;
+            border-radius: 30px;
+            font-size: 1.1em;
+        }
+        .blackButton{
+            color: #fff;
+            background: #000;
+            padding: 5px 7px;
+            border-radius: 30px;
+        }
+        @media (max-width: 786px){
+            .container{
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container" id="itemsTable">
+        <div class="item">
+            <span class="coupon" style="--l:5px;--r:auto;">Zain501</span>
+            <span class="discount" style="--l:auto;--r:5px;">-10%</span>
+            <img src="../assets/img/img_69286537ca830.jpg">
+            <div class="content">
+                <h2 style="--w:100%;">The Item Name</h2>
+                <p style="--w:100%">Lorem ipsum dolor sit amet culpa, autem ea corrupti voluptatum recusandae necessitatibus atque consequuntur incidunt perspiciatis!</p>
+                 <strike class="op">1000</strike>
+                 <h3 class="sp blackButton">900</h3>
+                 <div class="buttons" style="--w:100%;">
+                    <button>copy</button><button class="blackButton">Share</button>
+                 </div>
+            </div>            
+        </div>
+    </div>
+    <script>
+        var itemsTable = document.getElementById("itemsTable");
+         function fetch_items(){
+            fetch('./PHP/fetch_all_items_for_user.php').then(res => {
+                return res.json();
+            }).then(data => {
+                  itemsTable.innerHTML = ``;
+                displayData(data);
+            })
+        }
+        fetch_items()
+        function displayData(data){
+            console.log(data);
+            
+            data.forEach(item => {
+                var tr = document.createElement('div');
+                tr.classList.add('item');
+                tr.innerHTML = `<div class="item">
+            <span class="coupon" style="--l:5px;--r:auto;">Zain501</span>
+            <span class="discount" style="--l:auto;--r:5px;">-10%</span>
+            <img src="../assets/img/${item.imgPath}">
+            <div class="content">
+                <h2 style="--w:100%;">${item.Name}</h2>
+                <p style="--w:100%">Lorem ipsum dolor sit amet culpa, autem ea corrupti voluptatum recusandae necessitatibus atque consequuntur incidunt perspiciatis!</p>
+                 <strike class="op">${item.sp}</strike>
+                 <h3 class="sp blackButton">${item.sp * 0.9}</h3>
+                 <div class="buttons" style="--w:100%;">
+                    <button>copy</button><button class="blackButton">Share</button>
+                 </div>
+            </div>            
+        </div>`;
+                itemsTable.appendChild(tr);
+            });
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <a href="mailto:alishabraiz154@gmail.com">fg</a>
+    <button onclick="sharee()">Share</button>
+    <script>
+        function sharee() {
+            if (navigator.share) {
+                navigator.share({
+                    title: 'Check this out!',
+                    text: 'Awesome article on web sharing',
+                    url: 'https://example.com'
+                })
+                    .then(() => console.log('Shared successfully'))
+                    .catch((error) => console.error('Error sharing:', error));
+            } else {
+                console.log('Web Share API not supported on this browser');
+            }
+        }
+    </script>
+</body>
+
+</html>

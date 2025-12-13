@@ -62,10 +62,14 @@
             justify-content: space-between;
             gap: 10px;
         }
-
         .container .item .content * {
             width: var(--w);
+        }
 
+        .container .item .price{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
 
         /* .container .item .content h2, */
@@ -101,6 +105,21 @@
             .container .item {
                 width: 45%;
             }
+        .container .item span {
+            left: calc(var(--l) - 5px);
+            right: calc(var(--r) - 5px);
+            scale: 0.8;
+        }
+        .container .item .content h2{
+            font-size: 1.2em;
+        }
+        .container .item .content p {
+            font-size: 0.8em;
+        }
+
+             .container .item {
+                width: 45%;
+            }
         }
     </style>
 </head>
@@ -116,11 +135,12 @@
                     <h2 style="--w:100%;">The Item Name</h2>
                     <p style="--w:100%">Lorem ipsum dolor sit amet culpa, autem ea corrupti voluptatum recusandae
                         necessitatibus atque consequuntur incidunt perspiciatis!</p>
-                    <strike class="op">1000</strike>
-                    <h3 class="sp blackButton">900</h3>
+                    
                 </div>
             </section>
             <div class="buttons" style="--w:100%;">
+                <strike class="op">1000</strike>
+                    <h3 class="sp blackButton">900</h3>
                 <button>copy</button><button class="blackButton">Share</button>
             </div>
         </div>
@@ -146,19 +166,25 @@
                     <section>
             <span class="coupon" style="--l:5px;--r:auto;">Zain501</span>
             <span class="discount" style="--l:auto;--r:5px;">-10%</span>
-            <img src="../assets/img/${item.imgPath}"> alt="${item.Name}"
+            <img src="../assets/img/${item.imgPath}" alt="${item.Name}">
             <div class="content">
                 <h2 style="--w:100%;">${item.Name}</h2>
                 <p style="--w:100%">${item.para}</p>
-                 <strike class="op">${item.sp}</strike>
-                 <h3 class="sp blackButton">${Math.floor(item.sp * 0.9)} Rs Only</h3>
+                 
                  
             </div>  
               
             </section>   
+            <section style="display:flex;gap:10px;flex-direction:column;">
+                <div class="price">
+                    <strike class="op">${item.sp}</strike>
+                 <h3 class="sp blackButton">${Math.floor(item.sp * 0.9)} Rs Only</h3>
+                 </div>
             <div class="buttons" style="--w:100%;">
                     <button>copy</button><button class="blackButton">Share</button>
-                 </div>`;
+            </div>
+                </section>
+            `;
                 itemsTable.appendChild(tr);
             });
         }

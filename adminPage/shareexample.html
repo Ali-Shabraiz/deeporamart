@@ -46,7 +46,7 @@
             border-radius: 15px;
             padding: 5px 10px;
             /* box-shadow: 0 0 10px black; */
-            background: rgba(255,255,255,0.5);
+            background: rgba(255, 255, 255, 0.5);
             font-weight: 700;
 
         }
@@ -64,11 +64,12 @@
             justify-content: space-between;
             gap: 10px;
         }
+
         .container .item .content * {
             width: var(--w);
         }
 
-        .container .item .price{
+        .container .item .price {
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -81,7 +82,7 @@
 
         .container .item .buttons {
             display: flex;
-            gap: 15px;
+            gap: 10spx;
         }
 
         .container .item .buttons button {
@@ -92,7 +93,7 @@
             width: 100%;
             font-weight: bold;
             font-size: 0.8em;
-            
+
         }
 
         .blackButton {
@@ -103,26 +104,27 @@
         }
 
         @media (max-width: 786px) {
-            .container {
-                /* justify-content: center; */
-            }
+
 
             .container .item {
                 width: 45%;
             }
-        .container .item span {
-            left: calc(var(--l) - 5px);
-            right: calc(var(--r) - 5px);
-            scale: 0.8;
-        }
-        .container .item .content h2{
-            font-size: 1.2em;
-        }
-        .container .item .content p {
-            font-size: 0.8em;
-        }
 
-             .container .item {
+            .container .item span {
+                left: calc(var(--l) - 5px);
+                right: calc(var(--r) - 5px);
+                scale: 0.8;
+            }
+
+            .container .item .content h2 {
+                font-size: 1.2em;
+            }
+
+            .container .item .content p {
+                font-size: 0.8em;
+            }
+
+            .container .item {
                 width: 45%;
             }
         }
@@ -138,14 +140,14 @@
                 <img src="../assets/img/img_69286537ca830.jpg">
                 <div class="content">
                     <h2 style="--w:100%;">The Item Name</h2>
-                     <p style="--w:100%">Lorem ipsum dolor sit amet culpa, autem ea corrupti voluptatum recusandae
-                        necessitatibus atque consequuntur incidunt perspiciatis!</p> 
-                    
+                    <p style="--w:100%">Lorem ipsum dolor sit amet culpa, autem ea corrupti voluptatum recusandae
+                        necessitatibus atque consequuntur incidunt perspiciatis!</p>
+
                 </div>
             </section>
             <div class="buttons" style="--w:100%;">
                 <strike class="op">1000</strike>
-                    <h3 class="sp">900</h3>
+                <h3 class="sp">900</h3>
                 <button>copy</button><button class="blackButton">Share</button>
             </div>
         </div>
@@ -186,13 +188,30 @@
                  <h5 class="sp">${Math.floor(item.sp * 0.9)} Rs</h5>
                  </div>
             <div class="buttons" style="--w:100%;">
-                    <button>copy</button><button class="blackButton">Share</button> 
+                    <button>copy</button><button class="blackButton" onclick="shareIt(this)" data-title="${item.Name}" data-code="Use my Promocode to get discount 5%, hassan005" data-url="https://deeporamart.com">Share</button> 
 
             </div>
                 </section>
             `;
                 itemsTable.appendChild(tr);
             });
+        }
+
+
+
+        function shareIt(element) {
+            if (navigator.share) {
+                navigator.share({
+                    title:  element.dataset.title,
+                    text: element.dataset.code,
+                    url: element.dataset.url
+                })
+                    .then(() => console.log("Shared successfully"))
+                    .catch(err => console.error("Share failed:", err));
+            } else {
+                console.log("Web Share API not supported");
+            }
+
         }
     </script>
 </body>

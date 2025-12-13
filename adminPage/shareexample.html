@@ -45,8 +45,9 @@
             top: 5px;
             border-radius: 15px;
             padding: 5px 10px;
-            box-shadow: 0 0 10px black;
-            background: #fff;
+            /* box-shadow: 0 0 10px black; */
+            background: rgba(255,255,255,0.5);
+            font-weight: 700;
 
         }
 
@@ -84,16 +85,19 @@
         }
 
         .container .item .buttons button {
-            padding: 5px 0;
-            border: 2px solid black;
+            padding: 7px 0;
+            border: none;
             border-radius: 30px;
             font-size: 1.1em;
             width: 100%;
+            font-weight: bold;
+            font-size: 0.8em;
+            
         }
 
         .blackButton {
             color: #fff;
-            background: red;
+            background: #000;
             padding: 5px 7px;
             border-radius: 30px;
         }
@@ -141,7 +145,7 @@
             </section>
             <div class="buttons" style="--w:100%;">
                 <strike class="op">1000</strike>
-                    <h3 class="sp blackButton">900</h3>
+                    <h3 class="sp">900</h3>
                 <button>copy</button><button class="blackButton">Share</button>
             </div>
         </div>
@@ -179,7 +183,7 @@
             <section style="display:flex;gap:10px;flex-direction:column;">
                 <div class="price">
                     <strike class="op">${item.sp}</strike>
-                 <h5 class="sp blackButton">${Math.floor(item.sp * 0.9)} Rs Only</h5>
+                 <h5 class="sp">${Math.floor(item.sp * 0.9)} Rs</h5>
                  </div>
             <div class="buttons" style="--w:100%;">
                     <button>copy</button><button class="blackButton">Share</button> 

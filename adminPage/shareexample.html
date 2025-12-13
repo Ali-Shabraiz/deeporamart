@@ -42,8 +42,9 @@
             right: var(--r);
             left: var(--l);
             top: 5px;
-            border-radius: 30px;
+            border-radius: 15px;
             padding: 5px 10px;
+            box-shadow: 0 0 10px black;
             background: #fff;
 
         }
@@ -51,6 +52,8 @@
         .container .item img {
             width: 100%;
             border-radius: 10px;
+            box-shadow: 0 0 10px black;
+
         }
 
         .container .item .content {
@@ -92,11 +95,11 @@
 
         @media (max-width: 786px) {
             .container {
-                justify-content: center;
+                /* justify-content: center; */
             }
 
             .container .item {
-                width: 100%;
+                width: 45%;
             }
         }
     </style>
@@ -143,12 +146,12 @@
                     <section>
             <span class="coupon" style="--l:5px;--r:auto;">Zain501</span>
             <span class="discount" style="--l:auto;--r:5px;">-10%</span>
-            <img src="../assets/img/${item.imgPath}">
+            <img src="../assets/img/${item.imgPath}"> alt="${item.Name}"
             <div class="content">
                 <h2 style="--w:100%;">${item.Name}</h2>
                 <p style="--w:100%">${item.para}</p>
                  <strike class="op">${item.sp}</strike>
-                 <h3 class="sp blackButton">${item.sp * 0.9}</h3>
+                 <h3 class="sp blackButton">${Math.floor(item.sp * 0.9)} Rs Only</h3>
                  
             </div>  
               

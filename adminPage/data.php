@@ -1,31 +1,34 @@
 <?php
-     session_start();
-     if(!isset($_SESSION['token'])){
-     header('Location: ./index.html');
-     }
-     else{
-       
-        $token = trim($_SESSION['token']);
-     }
+session_start();
+if (!isset($_SESSION['token'])) {
+    header('Location: ./index.html');
+} else {
+
+    $token = trim($_SESSION['token']);
+}
 
 ?>
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Stock Details</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css" integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link rel="stylesheet" href="./CSS/datatable.css">
 </head>
+
 <body>
-    <form  enctype="multipart/form-data" id="addItemForm">
+    <form enctype="multipart/form-data" id="addItemForm">
         <h2><span id="formtext">Add</span> Item</h2>
         <input type="text" name="name" placeholder="Enter Item Name" required>
         <input type="number" name="op" placeholder="buy Price" required>
         <input type="number" name="sp" placeholder="Sale Price" required>
-        <textarea name="para" placeholder="Some Thing about the item."></textarea>
+        <textarea name="para" placeholder="Some Thing about the item." id="paragraphInput"></textarea>
         <input name="itemImage" accept="image/*" type="file" required>
         <input type="hidden" name="j" id="editItemId" value="">
         <button type="submit">Add</button>
@@ -38,27 +41,31 @@
             <th>Options</th>
         </tr>
     </table>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script>
         var formtext = document.getElementById("formtext");
         var isEditing = false;
         var itemsTable = document.getElementById('itemsTable');
         var addForm = document.querySelector('#addItemForm');
         var editItemId = document.getElementById('editItemId');
-        var inputsOfaddform= document.querySelectorAll("#addItemForm input");
+        var inputsOfaddform = document.querySelectorAll("#addItemForm input");
+        var paragraphInput = document.getElementById("paragraphInput")
         let formData;
-        addForm.addEventListener('submit',e=>{
+        var allItems;
+        addForm.addEventListener('submit', e => {
             e.preventDefault();
-         formData = new FormData(addForm);
+            formData = new FormData(addForm);
 
-        if(editItemId.value == '')
-            adddata();
-        else{
-            editdata(editItemId.value);
-        }
-            
+            if (editItemId.value == '')
+                adddata();
+            else {
+                editdata(editItemId.value);
+            }
+
         });
-        function adddata(){
+        function adddata() {
             $.ajax({
                 url: './PHP/addData.php',
                 method: 'POST',
@@ -73,20 +80,30 @@
                 }
             });
         }
-        function activeEdit(id){
-            if(!isEditing){
+
+        function activeEdit(id) {
+            if (!isEditing) {
+                var editsValues = findItemByID(id);
+                inputsOfaddform[0].value = editsValues.Name;
+                inputsOfaddform[1].value = editsValues.op;
+                inputsOfaddform[2].value = editsValues.sp;
+                paragraphInput.value = editsValues.para;
                 editItemId.value = id;
                 formtext.innerHTML = 'edit';
                 isEditing = true;
             }
-            else{
+            else {
                 editItemId.value = '';
                 formtext.innerHTML = 'Add';
+                inputsOfaddform[0].value = '';
+                inputsOfaddform[1].value = '';
+                inputsOfaddform[2].value = '';
+                paragraphInput.value = '';
                 isEditing = false;
             }
-            
+
         }
-        function editdata(id){
+        function editdata(id) {
             $.ajax({
                 url: './PHP/editData.php',
                 method: 'POST',
@@ -103,11 +120,12 @@
             });
         }
 
-        function fetch_items(){
-            fetch('./PHP/fetch_all_items.php?tt=<?Php echo $token;?>').then(res => {
+        function fetch_items() {
+            fetch('./PHP/fetch_all_items.php?tt=<?Php echo $token; ?>').then(res => {
                 return res.json();
             }).then(data => {
-                  itemsTable.innerHTML = `<tr>
+                allItems = data;
+                itemsTable.innerHTML = `<tr>
             <th>Product</th>
             <th>Sell</th>
             <th>Stock</th>
@@ -117,13 +135,13 @@
             })
         }
         fetch_items()
-        function displayData(data){
+        function displayData(data) {
             console.log(data);
-            
+
             data.forEach(item => {
                 var tr = document.createElement('tr');
                 tr.innerHTML = `
-            <td class="item"><img src="../assets/img/${item.imgPath}" alt=""><div class="content"><span class="name">${item.Name}</span><span class="op">${item.op}</span></div></td>
+            <td class="item"><img src="../assets/img/${item.imgPath}" alt=""><div class="content"><span class="name">${item.Name}</span><span class="op">${item.op}</span><q>${item.para}</q></div></td>
             <td>${item.sp}</td>
             <td><div class="stockNumber"><button style="--clr: red;" onclick="updateQuantity(${item.ID},this.value,'-')" id="minus${item.ID}">-</button><span id="stockNumber${item.ID}">${item.quantity}</span><button onclick="updateQuantity(${item.ID},this.value,'+')" id="plus${item.ID}" value="${item.quantity}" style="--clr:green;">+</button></div></td>
             <td><div class="options"><button style="--clr:green;" class="fas fa-edit" onclick="activeEdit(${item.ID})"></button><button style="--clr:red;" class="fa fa-trash" onclick="deletedata(${item.ID})"></button></div></td>
@@ -131,32 +149,37 @@
                 itemsTable.appendChild(tr);
             });
         }
-        function updateQuantity(i,value,sign){
+        function updateQuantity(i, value, sign) {
             var val = eval(`${value}${sign}1`);
-                document.getElementById(`plus${i}`).value = val;
-                document.getElementById(`minus${i}`).value = val;
-                document.getElementById(`stockNumber${i}`).textContent = val;
+            document.getElementById(`plus${i}`).value = val;
+            document.getElementById(`minus${i}`).value = val;
+            document.getElementById(`stockNumber${i}`).textContent = val;
 
-             $.ajax({
-                url: './PHP/changeStockNum.php?tt=<?Php echo $token;?>',
+            $.ajax({
+                url: './PHP/changeStockNum.php?tt=<?Php echo $token; ?>',
                 method: 'POST',
-                data: {id:i,quan:val},
+                data: { id: i, quan: val },
                 success: (data) => {
-                  
+
                     // fetch_items();
                 }
             });
         }
-        function deletedata(i){
+        function deletedata(i) {
             $.ajax({
-                url: './PHP/deleteData.php?tt=<?Php echo $token;?>',
+                url: './PHP/deleteData.php?tt=<?Php echo $token; ?>',
                 method: 'POST',
-                data: {id:i},
+                data: { id: i },
                 success: (data) => {
                     fetch_items();
                 }
             });
         }
+        function findItemByID(id) {
+            var filter = allItems.find(item => item.ID == id);
+            return filter;
+        }
     </script>
 </body>
+
 </html>

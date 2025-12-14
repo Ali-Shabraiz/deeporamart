@@ -1,9 +1,8 @@
 <?php
 session_start();
 if (!isset($_SESSION['token'])) {
-    header('Location: ./index.html');
+    header('Location: ../index.html');
 } else {
-
     $token = trim($_SESSION['token']);
 }
 ?>

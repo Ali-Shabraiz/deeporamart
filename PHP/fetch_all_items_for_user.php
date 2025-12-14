@@ -18,7 +18,7 @@ session_start();
         // Token exists, fetch stock data
 
 
-$query = "SELECT Name,imgPath,para,sp FROM stock";
+$query = "SELECT Name,imgPath,url,para,sp FROM stock";
         $res = $conn->query($query);
 
         if ($res) {

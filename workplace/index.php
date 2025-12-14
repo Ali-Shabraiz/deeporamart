@@ -179,7 +179,7 @@ if (!isset($_SESSION['token'])) {
                  <h5 class="sp">${Math.floor(item.sp * 0.9)} Rs</h5>
                  </div>
             <div class="buttons" style="--w:100%;">
-                    <button>copy</button><button class="blackButton" onclick="shareIt(this)" data-title="${item.Name}" data-code="Use my Promocode (<?php echo $token;?>) to get 5% discount" data-url="https://deeporamart.com">Share</button> 
+                    <button>copy</button><button class="blackButton" onclick="shareIt(this)" data-title="${item.Name}" data-code="Use my Promocode (<?php echo $token;?>) to get 5% discount" data-url="${item.url}">Share</button> 
 
             </div>
                 </section>

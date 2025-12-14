@@ -8,6 +8,7 @@ $imagePath = "";
 if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $name = $_POST['name'];
     $sp = $_POST['sp'];
+    $url = $_POST['url'];
     $price = $_POST['op'];
      $id = $_POST['j'];
      $para = $_POST['para'];
@@ -39,13 +40,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     }
 
     // Insert into DB using prepared statements
-    $stmt = $conn->prepare("UPDATE stock SET  Name = ?, imgPath = ?,para = ?, op = ?, sp = ? WHERE ID = ?");
+    $stmt = $conn->prepare("UPDATE stock SET  Name = ?, imgPath = ?, url = ?,para = ?, op = ?, sp = ? WHERE ID = ?");
 
     if (!$stmt) {
         die("Prepare failed: " . $conn->error);
     }
 
-    $stmt->bind_param("sssddd", $name,$imagePath,$para,$price,$sp,$id);
+    $stmt->bind_param("ssssddd", $name,$imagePath,$url,$para,$price,$sp,$id);
 
     if ($stmt->execute()) {
         echo "Item Edit successfully.";

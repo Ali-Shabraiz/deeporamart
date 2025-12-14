@@ -28,6 +28,7 @@ if (!isset($_SESSION['token'])) {
         <input type="text" name="name" placeholder="Enter Item Name" required>
         <input type="number" name="op" placeholder="buy Price" required>
         <input type="number" name="sp" placeholder="Sale Price" required>
+        <input type="url" name="url" placeholder="Enter Url" required>
         <textarea name="para" placeholder="Some Thing about the item." id="paragraphInput"></textarea>
         <input name="itemImage" accept="image/*" type="file" required>
         <input type="hidden" name="j" id="editItemId" value="">
@@ -76,6 +77,7 @@ if (!isset($_SESSION['token'])) {
                     inputsOfaddform[0].value = '';
                     inputsOfaddform[1].value = '';
                     inputsOfaddform[2].value = '';
+                    inputsOfaddform[3].value = '';
                     fetch_items();
                 }
             });
@@ -87,6 +89,7 @@ if (!isset($_SESSION['token'])) {
                 inputsOfaddform[0].value = editsValues.Name;
                 inputsOfaddform[1].value = editsValues.op;
                 inputsOfaddform[2].value = editsValues.sp;
+                inputsOfaddform[3].value = editsValues.url;
                 paragraphInput.value = editsValues.para;
                 editItemId.value = id;
                 formtext.innerHTML = 'edit';
@@ -98,6 +101,7 @@ if (!isset($_SESSION['token'])) {
                 inputsOfaddform[0].value = '';
                 inputsOfaddform[1].value = '';
                 inputsOfaddform[2].value = '';
+                inputsOfaddform[3].value = '';
                 paragraphInput.value = '';
                 isEditing = false;
             }

@@ -21,6 +21,16 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
     <script>
+        function deleteUser(id){
+            $.ajax({
+                url: './PHP/deleteUser.php',
+                method: 'POST',
+                data: {idd:id},
+                success: () => {
+                    fetch_users();
+                }
+            });
+        }
         function getGender(value) {
             switch (value) {
                 case 1: return "../assets/img/man.png";
@@ -48,10 +58,10 @@
                     <a href="mailto:${user.Email}" class="email">${user.Email}</a>
                 </div>
             </div>
-            <button class="fa fa-trash deleteUserBtn"></button>
+            <button class="fa fa-trash deleteUserBtn" onclick="deleteUser(${user.ID})"></button>
             <section class="contactIcons">
                 <a href="https://wa.me/${user.Phone}" target="_blank" class="phone fab fa-whatsapp" style="--clr:#25d366;"></a>
-            <a tel="tel:${user.Phone}" class="phone fa fa-phone" style="--clr:#000;"></a></section>
+                <a href="tel:${user.Phone}" class="phone fa fa-phone" style="--clr:#000;"></a></section>
             <form onsubmit="promocode(${user.ID})" id="form${user.ID}">
             <input id="inp${user.ID}" type="text" name="promoCode" placeholder="${checkPromoEmpty(user.promoCode)}" data-pl="${checkPromoEmpty(user.promoCode)}">
             <button type="submit" value="${user.ID}" name="idd">Submit</button>

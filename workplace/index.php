@@ -162,8 +162,8 @@ if (!isset($_SESSION['token'])) {
                 tr.classList.add('item');
                 tr.innerHTML = `
                     <section>
-            <span class="coupon" style="--l:5px;--r:auto;">Zain501</span>
-            <span class="discount" style="--l:auto;--r:5px;">-10%</span>
+            <span class="coupon" style="--l:5px;--r:auto;"><?php echo $token;?></span>
+            <span class="discount" style="--l:auto;--r:5px;">-5%</span>
             <img src="../assets/img/${item.imgPath}" alt="${item.Name}">
             <div class="content">
                 <h2 style="--w:100%;">${item.Name}</h2>
@@ -179,7 +179,7 @@ if (!isset($_SESSION['token'])) {
                  <h5 class="sp">${Math.floor(item.sp * 0.9)} Rs</h5>
                  </div>
             <div class="buttons" style="--w:100%;">
-                    <button>copy</button><button class="blackButton" onclick="shareIt(this)" data-title="${item.Name}" data-code="Use my Promocode to get discount 5%, hassan005 ${item.Name}" data-url="https://deeporamart.com">Share</button> 
+                    <button>copy</button><button class="blackButton" onclick="shareIt(this)" data-title="${item.Name}" data-code="Use my Promocode (<?php echo $token;?>) to get 5% discount" data-url="https://deeporamart.com">Share</button> 
 
             </div>
                 </section>

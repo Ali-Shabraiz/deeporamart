@@ -164,7 +164,7 @@ if (!isset($_SESSION['token'])) {
                     <section>
             <span class="coupon" style="--l:5px;--r:auto;">Zain501</span>
             <span class="discount" style="--l:auto;--r:5px;">-10%</span>
-            <img src="./assets/img/${item.imgPath}" alt="${item.Name}">
+            <img src="../assets/img/${item.imgPath}" alt="${item.Name}">
             <div class="content">
                 <h2 style="--w:100%;">${item.Name}</h2>
               <!--  <p style="--w:100%">${item.para}</p> -->

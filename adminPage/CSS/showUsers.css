@@ -55,16 +55,61 @@
             font-size: 0.8em;
             color: rgba(0, 0, 0, 0.5);
         }
+        .container .user form{
+            display: flex;
+            gap: 5px;
+        }
+        .container .user input{
+            width: 100%;
+            background: #00000011;
+        }
+        .container .user input[data-pl="Enter Promocode"]{
+            outline: 2px solid red;
+        }
+        .container .user input:not([data-pl="Enter Promocode"]){
+            outline: 2px solid rgb(26, 255, 1) !important;
+
+        }
+        .container .user input:focus,
+        .container .user input[value=""]
+        {
+            outline: 2px solid black !important;
+        }
+        .container .user button{
+            background: #000;
+            color: #fff;
+            font-weight: bold;
+        }
+        .container .user input,
+        .container .user button{
+            padding: 10px 5px;
+            border-radius: 10px;
+            border: none;
+
+        }
+        .container .user .deleteUserBtn{
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            width: 30px;
+            height: 30px;
+            border-radius: 5px;
+            background-color: red !important;
+        }
+        .container .user .contactIcons{
+            display: flex;
+            gap: 10px;
+        }
         .container .user .phone{
             /* position: absolute;
             top: 10px;
             right: 10px; */
-            background: #000;
+            background: var(--clr);
             color: #fff;
             padding: 5px;
             text-decoration: none;
             width: max-content;
-            border-radius: 20px;
+            border-radius: 10px;
         }
         
        

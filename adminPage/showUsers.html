@@ -1,52 +1,99 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/7.0.1/css/all.min.css"
+        integrity="sha512-2SwdPD6INVrV/lHTZbO2nodKhrnDdJK9/kg2XD1r9uGqPo1cUbujc+IYdlYdEErWNu69gVcYgdxlmVmzTWnetw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <title>Our sellers</title>
     <link rel="stylesheet" href="./CSS/showUsers.css">
 </head>
+
 <body>
     <div class="container" id="userTable">
 
-        </div>
+    </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
-    integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
     <script>
-        function getGender(value){
-            switch(value){
+        function getGender(value) {
+            switch (value) {
                 case 1: return "../assets/img/man.png";
-                break;
+                    break;
                 case 2: return "../assets/img/woman.png";
-                break;
+                    break;
             }
-    }
-    var userTable = document.getElementById('userTable');
-    fetch("./PHP/fetch_all_users.php").then(res => {
-        return res.json();
-    }).then(data => {
-        console.log(data);
-        data.forEach(user => {
-            var card = document.createElement('div');
-            // var tr1 = document.createElement('tr');
-            card.classList.add('user');
-            card.innerHTML = `
+        }
+        var userTable = document.getElementById('userTable');
+       function fetch_users(){
+         fetch("./PHP/fetch_all_users.php").then(res => {
+            return res.json();
+        }).then(data => {
+            console.log(data);
+            userTable.innerHTML = ``;
+            data.forEach(user => {
+                var card = document.createElement('div');
+                // var tr1 = document.createElement('tr');
+                card.classList.add('user');
+                card.innerHTML = `
             <div class="basicD">
-                <img src="${getGender(Number(user.gender))}" alt="">
+                <img src="${getGender(Number(user.gender))}" title="${user.bio}">
                 <div class="content">
                     <div class="name">${user.Name}</div>
                     <a href="mailto:${user.Email}" class="email">${user.Email}</a>
                 </div>
             </div>
-            <a href="tel:${user.Phone}" class="phone">${user.Phone}</a>
-            <p>${user.bio}</p>
+            <button class="fa fa-trash deleteUserBtn"></button>
+            <section class="contactIcons">
+                <a href="https://wa.me/${user.Phone}" target="_blank" class="phone fab fa-whatsapp" style="--clr:#25d366;"></a>
+            <a tel="tel:${user.Phone}" class="phone fa fa-phone" style="--clr:#000;"></a></section>
+            <form onsubmit="promocode(${user.ID})" id="form${user.ID}">
+            <input id="inp${user.ID}" type="text" name="promoCode" placeholder="${checkPromoEmpty(user.promoCode)}" data-pl="${checkPromoEmpty(user.promoCode)}">
+            <button type="submit" value="${user.ID}" name="idd">Submit</button>
+            </form>
             `;
-            userTable.appendChild(card);
+                userTable.appendChild(card);
+
+            });
+            disableformDefault()
         });
-    });
-</script>
+       }
+       fetch_users();
+        function disableformDefault() {
+            document.querySelectorAll("form").forEach(form => {
+                form.addEventListener("submit", function (e) {
+                    e.preventDefault();
+                });
+            });
+        }
+        function promocode(id){
+            let value = document.getElementById(`inp${id}`).value;
+            $.ajax({
+                url: './PHP/changePromoCode.php',
+                method: 'POST',
+                data: {idd:id,promoCode:value},
+                success: (dataa) => {
+                    fetch_users();
+                }
+            });
+            
+        }
+
+        function checkPromoEmpty(value){
+            if(value == "" || value == ''){
+                return 'Enter Promocode';
+            }
+            else{
+                return value;
+                console.log(value)
+            }
+        }
+    </script>
 </body>
+
 </html>

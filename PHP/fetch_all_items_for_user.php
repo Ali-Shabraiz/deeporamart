@@ -1,6 +1,6 @@
 <?php
 header("Content-Type: application/json");
-include "../../PHP/config.php";
+include "./config.php";
 session_start();
 
 // Check if 'tt' parameter is set

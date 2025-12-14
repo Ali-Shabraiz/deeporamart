@@ -11,10 +11,11 @@
 
 <body>
     <!-- <div class="main"> -->
-        <form class="form-wizard" id="userAddForm">
+        <form class="form-wizard" id="logInForm"  action="./PHP/logIn.php">
       <!-- .completed -->
       <div class="completed" hidden>
-        <svg
+        <h2>Redirecting</h2>
+        <!-- <svg
           xmlns="http://www.w3.org/2000/svg"
           fill="none"
           viewBox="0 0 24 24"
@@ -29,21 +30,21 @@
         </svg>
 
         <h3>Registration Successful!</h3>
-        <p>Your account has been created.</p>
+        <p>Your account has been created.</p> -->
       </div>
       <!-- /.completed -->
 
-      <h1>Registration</h1>
+      <h1>Log In</h1>
 
       <!-- .progress-container -->
       <div class="progress-container">
         <div class="progress"></div>
 
         <ol>
-          <li class="current">Personal</li>
-          <li>Contact</li>
+          <!-- <li class="current">Personal</li> -->
+          <!-- <li>Contact</li> -->
           <!-- <li>Account</li> -->
-          <li>About</li>
+          <!-- <li>About</li> -->
         </ol>
       </div>
       <!-- /.progress-container -->
@@ -51,44 +52,21 @@
       <!-- .steps-container -->
       <div class="steps-container">
         <div class="step">
-          <h3>Personal Information</h3>
-
-          <div class="form-control">
-            <label for="full-name">First Name</label>
-            <input type="text" id="full-name" name="name" required />
-          </div>
-          <div class="form-control">
-            <!-- <label for="last-name">Last Name</label>
-            <input type="text" id="last-name" name="last-name" required /> -->
-            <div class="gender">
-            <label for="male">Male</label>
-            <input type="radio" id="male" name="gender" value="1">
-            <label for="female">Female</label>
-            <input type="radio" name="gender" id="female" value="2">
-            </div>
-          </div>
-        </div>
-        <div class="step">
-          <h3>Contact Information</h3>
+          <h3>Enter your Details</h3>
 
           <div class="form-control">
             <label for="email">Email</label>
             <input type="email" id="email" name="email" required />
           </div>
-
           <div class="form-control">
-            <label for="phone">WhatsApp Number</label>
-            <input type="tel" id="phone" name="phone" required />
+            <!-- <label for="last-name">Last Name</label>
+            <input type="text" id="last-name" name="last-name" required /> -->
+            <label for="password">Password</label>
+            <input type="password" name="pass" id="password">
           </div>
         </div>
-        <div class="step">
-          <h3>About</h3>
-
-          <div class="form-control">
-            <label for="bio">Bio</label>
-            <textarea name="bio" id="bio" rows="4" required></textarea>
-          </div>
-        </div>
+        
+        
       </div>
       <!-- /.steps-container -->
 
@@ -96,29 +74,12 @@
       <div class="controls">
         <button type="button" class="prev-btn">Previous</button>
         <button type="button" class="next-btn">Next</button>
-        <button type="submit" class="submit-btn">Submit</button>
+        <button type="submit" class="submit-btn" style="background-color: orangered;">LogIn</button>
       </div>
       <!-- /.controls -->
     </form>
     <!-- </div> -->
-    <script src="./assets/JS/userRegisterForm.js"></script>
+    <script src="./assets/JS/userloginForm.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-    <script>
-        // var form = document.getElementById('userAddForm');
-        // form.addEventListener('submit',e => {
-        //     e.preventDefault();
-        //     $.ajax({
-        //         url: "../PHP/submitnewuser.php",
-        //         method: "POST",
-        //         data: $("#userAddForm").serialize(),
-        //         success: (data) => {
-        //             console.log(data);
-        //         }
-        //     });
-        // });
-
-
-    </script>
 </body>
-
 </html>

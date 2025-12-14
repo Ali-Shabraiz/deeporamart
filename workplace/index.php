@@ -1,3 +1,12 @@
+<?php
+session_start();
+if (!isset($_SESSION['token'])) {
+    header('Location: ./index.html');
+} else {
+
+    $token = trim($_SESSION['token']);
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -138,7 +147,7 @@
     <script>
         var itemsTable = document.getElementById("itemsTable");
         function fetch_items() {
-            fetch('./PHP/fetch_all_items_for_user.php').then(res => {
+            fetch('../PHP/fetch_all_items_for_user.php').then(res => {
                 return res.json();
             }).then(data => {
                 itemsTable.innerHTML = ``;
